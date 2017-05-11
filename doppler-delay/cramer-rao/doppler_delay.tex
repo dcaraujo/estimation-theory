@@ -13,22 +13,67 @@
 where $\beta$ is the propagation loss, $f_D$ is the doppler deviation, $\tau$ is the delay, and $T_s$ is the sampling period. The pdf of the received signal is give by
 
 \begin{equation}
-  g(f_D,\tau) = \frac{1}{\sqrt{2\sigma ^2}}\textrm{e}^{\prod_{n=1}^{N}\frac{\left(r(nT_s) - \beta s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n}\right)^2}{2\sigma^2}}
+  g(f_D,\tau) = \prod_{n=1}^{N}\frac{1}{\sqrt{2\pi \sigma ^2}}\textrm{e}^{\frac{|r(nT_s) - \beta s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n}|^2}{2\sigma^2}}
 \end{equation}
 
+Calculate the first derivative with respect the doppler.
+
+\begin{align}\label{eq.:first_derivative_doppler}
+ \frac{\partial \textrm{ln}\{g(f_D,\tau)\} }{\partial  f_D} & = \frac{\partial }{\partial  f_D} \sum_{n=1}^{N}\frac{\left(r(nT_s) - \beta s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n}\right)\left(r(nT_s) - \beta s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n}\right)^{*}}{2\sigma^2} \nonumber\\
+                                                            & =  -\frac{\partial }{\partial  f_D} \sum_{n=1}^{N}\frac{\beta r(nT_s)s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n} + \beta^{*} r^{*}(nT_s)s^{*}(nT_s - \tau)\textrm{e}^{2\pi \jmath f_DT_s n}}{2\sigma^2}  \nonumber\\
+                                                            & = -\frac{\partial }{\partial  f_D} \sum_{n=1}^{N} \frac{2|\beta||r(nT_s)|s(nT_s - \tau)|\cos{(2\pi f_DT_s n + \phi_{\beta} + \phi_r(nT_s) + \phi_{s}(nT_s - \tau))}}{2\sigma^2} \nonumber \\
+                                                            & = \frac{2\pi T_s |\beta|}{\sigma ^2} \sum_{n=1}^{N} n|r(nT_s)|s(nT_s - \tau)|\sin{(2\pi f_DT_s n + \phi_{\beta} + \phi_r(nT_s) + \phi_{s}(nT_s - \tau))}
+\end{align}
+
+Calculate the first derivative with respect the $\tau$
+
+\begin{align}\label{eq.:first_derivative_tau}
+   \frac{\partial \textrm{ln}\{g(f_D,\tau)\} }{\partial  \tau} & = \frac{\partial }{\partial  \tau} \sum_{n=1}^{N}\frac{\left(r(nT_s) - \beta s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n}\right)\left(r(nT_s) - \beta s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n}\right)^{*}}{2\sigma^2} \nonumber\\
+                                                               &= \frac{\partial }{\partial  \tau} \frac{1}{2\sigma^2} \sum_{n=1}^{N}[-\left(\beta r(nT_s)s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n} + \beta^{*} r^{*}(nT_s)s^{*}(nT_s - \tau)\textrm{e}^{2\pi \jmath f_DT_s n}\right) \nonumber \\
+                                                               & + |\beta|^{2}|s(nT_s - \tau)|^{2}] \nonumber \\
+                                                               &= \frac{1}{2\sigma ^2} \sum_{n=1}^{N}[\beta r(nT_s)s^{\prime}(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n} + \beta^{*} r^{*}(nT_s)(s^{\prime}(nT_s - \tau))^{*}\textrm{e}^{2\pi \jmath f_DT_s n} \ldots \nonumber \\
+                                                               & + 2|\beta|^2\textrm{Real}\{ s^{\prime}(nT - \tau)s^{*}(nT - \tau)\}]   \nonumber \\
+                                                               & = \frac{1}{2\sigma ^2} \sum_{n=1}^{N} [2|\beta||r(nT)|s^{\prime}(nT - \tau)|\cos{(2\pi f_DT n + \phi_{\beta} + \phi_r(nT) + \phi_{s^{\prime}}(nT - \tau))} \ldots   \nonumber \\
+                                                               & + 2|\beta|^2\textrm{Real}\{ s^{\prime}(nT - \tau)s^{*}(nT - \tau) ] \nonumber \\
+                                                               & = \frac{|\beta|}{\sigma ^{2}}\sum_{n=1}^{N}[|r(nT)|s^{\prime}(nT - \tau)| \cos{(2\pi f_DT n + \phi_{\beta} + \phi_r(nT) + \phi_{s^{\prime}}(nT - \tau))} \ldots \nonumber \\
+                                                               & + |\beta||s^{\prime}(nT - \tau)||s(nT - \tau)|\cos{(\phi_{s^{\prime}}(nT - \tau) - \phi_{s}(nT - \tau))}] \nonumber \\
+                                                               & = \frac{|\beta|}{\sigma ^{2}}\sum_{n=1}^{N}[|r(nT)|s^{\prime}(nT - \tau)| \cos{(2\pi f_DT n + \phi_{\beta} + \phi_r(nT) + \phi_{s^{\prime}}(nT - \tau))} \ldots \nonumber \\
+  & + \Gamma (\tau) 
+\end{align}
+
+Consider the second derivative of Eq. \eqref{eq.:first_derivative_doppler}
+
+\begin{align} \label{eq.:second_derivative_doppler}
+  \frac{\partial ^2 \textrm{ln}\{g(f_D,\tau)\} }{\partial ^2 f_D} & =  \frac{\partial }{\partial  f_D}\frac{2\pi T_s |\beta|}{\sigma ^2} \sum_{n=1}^{N} n|r(nT_s)|s(nT_s - \tau)| \ldots \nonumber \\
+                                                                  & \times \sin{(2\pi f_DT_s n + \phi_{\beta} + \phi_r(nT_s) + \phi_{s}(nT_s - \tau))}  \nonumber \\
+                                                                  & = |\beta|\frac{(2\pi T_s)^2}{\sigma ^2}\sum_{n=1}^{N} n^2|r(nT_s)|s(nT_s - \tau)| \ldots \nonumber \\
+                                                                  & \times \cos{(2\pi f_DT_s n + \phi_{\beta} + \phi_r(nT_s) + \phi_{s}(nT_s - \tau))}
+\end{align}
+
+Consider the derivative with respect the doppler of Eq.
+\eqref{eq.:first_derivative_tau}
+
+\begin{align}
+  \frac{\partial ^2 \textrm{ln}\{g(f_D,\tau)\} }{\partial  f_D \partial  \tau} & = \frac{\partial }{\partial  f_D} \frac{|\beta|}{\sigma ^{2}}\sum_{n=1}^{N}[|r(nT)|s^{\prime}(nT - \tau)| \cos{(2\pi f_DT n + \phi_{\beta} + \phi_r(nT) + \phi_{s^{\prime}}(nT - \tau))} \ldots \nonumber \\
+                                                                               & + |\beta||s^{\prime}(nT - \tau)||s(nT - \tau)|\cos{(\phi_{s^{\prime}}(nT - \tau) - \phi_{s}(nT - \tau))}] \nonumber \\
+                                                                               & = -\frac{|\beta|}{\sigma ^{2}}\sum_{n=1}^{N} |r(nT)|s^{\prime}(nT - \tau)| \sin{(2\pi f_DT n + \phi_{\beta} + \phi_r(nT) + \phi_{s^{\prime}}(nT - \tau))}
+\end{align}
 
 
 \begin{align}
- \frac{\partial \textrm{ln}\{g(f_D,\tau)\} }{\partial  f_D} & = \frac{\partial }{\partial  f_D} \sum_{n=1}^{N}\frac{\left(r(nT_s) - \beta s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n}\right)^2}{2\sigma^2} \\
- & = \sum_{n=1}^{N}\frac{\left(r(nT_s) - \beta s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n}\right)}{\sigma^2} \jmath 2\pi \beta T_s n s(nT_s - \tau)\textrm{e}^{-\jmath 2\pi f_DT_s n} \\
-  & = \sum_{n=1}^{N}\frac{\left(r(nT_s) - \beta s(nT_s - \tau)\textrm{e}^{-\jmath 2\pi f_DT_s n}\right)}{\sigma^2} 2\pi \beta T_s n s(nT_s - \tau)\textrm{e}^{-\jmath 2\pi f_DT_s n + \pi/2} \\
+  \frac{\partial ^2 \textrm{ln}\{g(f_D,\tau)\} }{\partial ^2  \tau}  & = \frac{|\beta|}{\sigma ^{2}}\sum_{n=1}^{N}[|r(nT) |s^{\prime \prime}(nT - \tau)|\cos{(\phi_{s^{\prime \prime}}(nT - \tau) - \phi_{s^{\prime}}(nT - \tau))} \ldots \nonumber \\
+                                                                     & \times\cos{(2\pi f_DT n + \phi_{\beta} + \phi_r(nT) + \phi_{s^{\prime}}(nT - \tau))} \ldots \nonumber \\
+                                                                     & +|s^{\prime}(nT - \tau)|\sin{(2\pi f_DT n + \phi_{\beta} + \phi_r(nT) + \phi_{s^{\prime}}(nT - \tau))}\phi^{\prime}_{s^{\prime}}(nT - \tau) \nonumber \\
+  & + \Gamma ^{\prime}(\tau)
 \end{align}
-   
-itemize     
 
-%The Doppler effect ant the $\tau$ are important sources of errors in wireless communication systems, causing losses of performance at receiver. Therefore, the Doppler effect and the delay estimations are important problems that must considered before the data detection in order to achieve a reliable communication. 
+\begin{align}
+  \frac{\partial ^2 \textrm{ln}\{g(f_D,\tau)\} }{\partial   \tau \partial f_D}  & =  \frac{\partial }{\partial  \tau} \frac{2\pi T_s |\beta|}{\sigma ^2} \sum_{n=1}^{N} n|r(nT_s)|s(nT_s - \tau)|\sin{(2\pi f_DT_s n + \phi_{\beta} + \phi_r(nT_s) + \phi_{s}(nT_s - \tau))} \nonumber \\
+                                                                                & = -\frac{2\pi T_s |\beta|}{\sigma ^2} \sum_{n=1}^{N}[ n|r(nT)|s^{\prime}(nT - \tau)|\cos{(\phi_{s^{\prime}}(nT - \tau) - \phi_{s}(nT - \tau))} \ldots \nonumber \\
+                                                                                & \times \sin{(2\pi f_DT_s n + \phi_{\beta} + \phi_r(nT_s) + \phi_{s}(nT_s - \tau))}  \ldots \nonumber \\
+                                                                                & + |s(nT_s - \tau)|\cos{(2\pi f_DT_s n + \phi_{\beta} + \phi_r(nT_s) + \phi_{s}(nT_s - \tau))}\phi^{\prime}_{s}(nT_s - \tau)]
+\end{align}
 
 
 
- 	
 \end{document}
