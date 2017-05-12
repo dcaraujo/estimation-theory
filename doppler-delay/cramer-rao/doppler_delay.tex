@@ -2,78 +2,82 @@
 
 
 \input{packages}
+\input{mymath}
 
 \begin{document}
 	
 \section{Cramer-Rao bound}	
 	Let us consider a single antenna transmitter and receiver that communicates through a channel that is composed by a single tap. The transmitted signal is defined as $s(t)$ and the received signal is $r(t)$. Assuming the receiver samples the received signal $r(t)$, the system model is written as
 	\begin{equation}
-		r(nT_s) = \beta s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n} + z(nT_s),
+		r(nT) = \underbrace{\beta s(nT - \tau)\textrm{e}^{-2\pi \jmath f_DT n}}_{\mu (f_D,\tau,n)} + z(nT),
 	\end{equation}
-where $\beta$ is the propagation loss, $f_D$ is the doppler deviation, $\tau$ is the delay, and $T_s$ is the sampling period. The pdf of the received signal is give by
+where $\beta$ is the propagation loss, $f_D$ is the doppler deviation, $\tau$ is the delay, and $T$ is the sampling period. The pdf of the received signal is give by
 
 \begin{equation}
-  g(f_D,\tau) = \prod_{n=1}^{N}\frac{1}{\sqrt{2\pi \sigma ^2}}\textrm{e}^{\frac{|r(nT_s) - \beta s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n}|^2}{2\sigma^2}}
+  g(f_D,\tau) = \frac{1}{\sqrt{2\pi \sigma ^2}}\textrm{e}^{\frac{| \bfr - \bm{\mu} (f_D,\tau)|^2}{2\sigma^2}}
 \end{equation}
 
 Calculate the first derivative with respect the doppler.
-
-\begin{align}\label{eq.:first_derivative_doppler}
- \frac{\partial \textrm{ln}\{g(f_D,\tau)\} }{\partial  f_D} & = \frac{\partial }{\partial  f_D} \sum_{n=1}^{N}\frac{\left(r(nT_s) - \beta s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n}\right)\left(r(nT_s) - \beta s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n}\right)^{*}}{2\sigma^2} \nonumber\\
-                                                            & =  -\frac{\partial }{\partial  f_D} \sum_{n=1}^{N}\frac{\beta r(nT_s)s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n} + \beta^{*} r^{*}(nT_s)s^{*}(nT_s - \tau)\textrm{e}^{2\pi \jmath f_DT_s n}}{2\sigma^2}  \nonumber\\
-                                                            & = -\frac{\partial }{\partial  f_D} \sum_{n=1}^{N} \frac{2|\beta||r(nT_s)|s(nT_s - \tau)|\cos{(2\pi f_DT_s n + \phi_{\beta} + \phi_r(nT_s) + \phi_{s}(nT_s - \tau))}}{2\sigma^2} \nonumber \\
-                                                            & = \frac{2\pi T_s |\beta|}{\sigma ^2} \sum_{n=1}^{N} n|r(nT_s)|s(nT_s - \tau)|\sin{(2\pi f_DT_s n + \phi_{\beta} + \phi_r(nT_s) + \phi_{s}(nT_s - \tau))}
+\begin{align}\label{eq.: doppler_first}
+  \frac{\partial \bm{\mu} (f_D,\tau)}{\partial f_D} & = -2\pi \jmath T \bfs (\tau) \odot \bfe
 \end{align}
 
-Calculate the first derivative with respect the $\tau$
-
-\begin{align}\label{eq.:first_derivative_tau}
-   \frac{\partial \textrm{ln}\{g(f_D,\tau)\} }{\partial  \tau} & = \frac{\partial }{\partial  \tau} \sum_{n=1}^{N}\frac{\left(r(nT_s) - \beta s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n}\right)\left(r(nT_s) - \beta s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n}\right)^{*}}{2\sigma^2} \nonumber\\
-                                                               &= \frac{\partial }{\partial  \tau} \frac{1}{2\sigma^2} \sum_{n=1}^{N}[-\left(\beta r(nT_s)s(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n} + \beta^{*} r^{*}(nT_s)s^{*}(nT_s - \tau)\textrm{e}^{2\pi \jmath f_DT_s n}\right) \nonumber \\
-                                                               & + |\beta|^{2}|s(nT_s - \tau)|^{2}] \nonumber \\
-                                                               &= \frac{1}{2\sigma ^2} \sum_{n=1}^{N}[\beta r(nT_s)s^{\prime}(nT_s - \tau)\textrm{e}^{-2\pi \jmath f_DT_s n} + \beta^{*} r^{*}(nT_s)(s^{\prime}(nT_s - \tau))^{*}\textrm{e}^{2\pi \jmath f_DT_s n} \ldots \nonumber \\
-                                                               & + 2|\beta|^2\textrm{Real}\{ s^{\prime}(nT - \tau)s^{*}(nT - \tau)\}]   \nonumber \\
-                                                               & = \frac{1}{2\sigma ^2} \sum_{n=1}^{N} [2|\beta||r(nT)|s^{\prime}(nT - \tau)|\cos{(2\pi f_DT n + \phi_{\beta} + \phi_r(nT) + \phi_{s^{\prime}}(nT - \tau))} \ldots   \nonumber \\
-                                                               & + 2|\beta|^2\textrm{Real}\{ s^{\prime}(nT - \tau)s^{*}(nT - \tau) ] \nonumber \\
-                                                               & = \frac{|\beta|}{\sigma ^{2}}\sum_{n=1}^{N}[|r(nT)|s^{\prime}(nT - \tau)| \cos{(2\pi f_DT n + \phi_{\beta} + \phi_r(nT) + \phi_{s^{\prime}}(nT - \tau))} \ldots \nonumber \\
-                                                               & + |\beta||s^{\prime}(nT - \tau)||s(nT - \tau)|\cos{(\phi_{s^{\prime}}(nT - \tau) - \phi_{s}(nT - \tau))}] \nonumber \\
-                                                               & = \frac{|\beta|}{\sigma ^{2}}\sum_{n=1}^{N}[|r(nT)|s^{\prime}(nT - \tau)| \cos{(2\pi f_DT n + \phi_{\beta} + \phi_r(nT) + \phi_{s^{\prime}}(nT - \tau))} \ldots \nonumber \\
-  & + \Gamma (\tau) 
+\begin{align}\label{eq.: doppler_first_conj}
+  \frac{\partial \bm{\mu}^H(f_D,\tau)}{\partial f_D} & = 2\pi \jmath T \bfs^{H} (\tau)\odot \bfe^{*}
 \end{align}
 
-Consider the second derivative of Eq. \eqref{eq.:first_derivative_doppler}
-
-\begin{align} \label{eq.:second_derivative_doppler}
-  \frac{\partial ^2 \textrm{ln}\{g(f_D,\tau)\} }{\partial ^2 f_D} & =  \frac{\partial }{\partial  f_D}\frac{2\pi T_s |\beta|}{\sigma ^2} \sum_{n=1}^{N} n|r(nT_s)|s(nT_s - \tau)| \ldots \nonumber \\
-                                                                  & \times \sin{(2\pi f_DT_s n + \phi_{\beta} + \phi_r(nT_s) + \phi_{s}(nT_s - \tau))}  \nonumber \\
-                                                                  & = |\beta|\frac{(2\pi T_s)^2}{\sigma ^2}\sum_{n=1}^{N} n^2|r(nT_s)|s(nT_s - \tau)| \ldots \nonumber \\
-                                                                  & \times \cos{(2\pi f_DT_s n + \phi_{\beta} + \phi_r(nT_s) + \phi_{s}(nT_s - \tau))}
+\begin{align}\label{eq.: tau_first}
+  \frac{\partial \bm{\mu} (f_D,\tau)}{\partial \tau} & = -\bfs^{\prime} (\tau)\odot \tilde{\bfe}
 \end{align}
 
-Consider the derivative with respect the doppler of Eq.
-\eqref{eq.:first_derivative_tau}
+
+\begin{align}\label{eq.: tau_first_conj}
+  \frac{\partial \bm{\mu}^{H} (f_D,\tau)}{\partial \tau} & = -\left(\bfs^{\prime}(\tau) \odot  \tilde{\bfe} \right)^{H} 
+\end{align}
+where $\bfe[n] = n\textrm{e}^{-2\pi \jmath f_DT n}$ and $\tilde{\bfe}[n] = \textrm{e}^{-2\pi \jmath f_DT n}$
+
+\[  \bfI(f_D,\tau) = 
+  \begin{bmatrix}
+   2\textrm{Re}\{ \frac{\partial \bm{\mu}^H(f_D,\tau)}{\partial
+      f_D} \frac{\partial \bm{\mu} (f_D,\tau)}{\partial f_D} \} & 2\textrm{Re}\{\frac{\partial
+      \bm{\mu}^H(f_D,\tau)}{\partial f_D}\frac{\partial \bm{\mu}
+      (f_D,\tau)}{\partial \tau}  \} \\
+     2\textrm{Re}\{ \frac{\partial \bm{\mu}^H(f_D,\tau)}{\partial
+      \tau} \frac{\partial \bm{\mu} (f_D,\tau)}{\partial f_D} \} & 2\textrm{Re}\{\frac{\partial
+      \bm{\mu}^H(f_D,\tau)}{\partial \tau}\frac{\partial \bm{\mu}
+      (f_D,\tau)}{\partial \tau}  \} \\
+  \end{bmatrix}
+\]
+
+
+
+\[  \bfI(f_D,\tau) = 
+  \begin{bmatrix}
+   2\textrm{Re}\{ 4 \pi^2 T^2|\beta|^2 \sum^{N-1}_{n=0}n^2|\bfs_n (\tau)|^2  \} &
+   2\textrm{Re}\{ 2\pi \jmath T   \sum^{N-1}_{n=0} n\bfs_n^{*} (\tau)\bfs_n^{\prime} (\tau) \} \\
+     2\textrm{Re}\{ 2\pi \jmath T   \sum^{N-1}_{n=0} n\bfs_n(\tau)\left(\bfs_n^{\prime} (\tau)\right)^{*} \} & 2\textrm{Re}\{  4 \pi^2 T^2 |\beta|^2 \sum^{N-1}_{n=0}|\bfs^{\prime}_n (\tau)|^2 \} \\
+  \end{bmatrix}
+\]
+
+The inverse of Fisher matrix is
+\[  \bfI(f_D,\tau) = \frac{1}{\textrm{det}(\bfI(f_D,\tau))}
+\begin{bmatrix}
+  2\textrm{Re}\{  4 \pi^2 T^2 |\beta|^2 \sum^{N-1}_{n=0}|\bfs^{\prime}_n
+  (\tau)|^2 \}  &
+   - 2\textrm{Re}\{ 2\pi \jmath T   \sum^{N-1}_{n=0} n\bfs_n^{*} (\tau)\bfs_n^{\prime} (\tau) \} \\
+     - 2\textrm{Re}\{ 2\pi \jmath T   \sum^{N-1}_{n=0}
+     n\bfs_n(\tau)\left(\bfs_n^{\prime} (\tau)\right)^{*} \} & 2\textrm{Re}\{ 4
+     \pi^2 T^2|\beta|^2 \sum^{N-1}_{n=0}n^2|\bfs_n (\tau)|^2  \}  \\
+\end{bmatrix}
+\]
+where
 
 \begin{align}
-  \frac{\partial ^2 \textrm{ln}\{g(f_D,\tau)\} }{\partial  f_D \partial  \tau} & = \frac{\partial }{\partial  f_D} \frac{|\beta|}{\sigma ^{2}}\sum_{n=1}^{N}[|r(nT)|s^{\prime}(nT - \tau)| \cos{(2\pi f_DT n + \phi_{\beta} + \phi_r(nT) + \phi_{s^{\prime}}(nT - \tau))} \ldots \nonumber \\
-                                                                               & + |\beta||s^{\prime}(nT - \tau)||s(nT - \tau)|\cos{(\phi_{s^{\prime}}(nT - \tau) - \phi_{s}(nT - \tau))}] \nonumber \\
-                                                                               & = -\frac{|\beta|}{\sigma ^{2}}\sum_{n=1}^{N} |r(nT)|s^{\prime}(nT - \tau)| \sin{(2\pi f_DT n + \phi_{\beta} + \phi_r(nT) + \phi_{s^{\prime}}(nT - \tau))}
+  \textrm{det}(\bfI(f_D,\tau)) & =  64 \pi^4 T^4 |\beta|^4 \sum^{N-1}_{n=0}\sum^{N-1}_{m=0}n^2|\bfs^{\prime}_n
+                                 (\tau)|^2|\bfs_m (\tau)|^2 - \ldots \nonumber \\
+                                 & = 4\textrm{Re}\{ 2\pi \jmath T   \sum^{N-1}_{n=0} n\bfs_n^{*} (\tau)\bfs_n^{\prime} (\tau) \}\textrm{Re}\{ 2\pi \jmath T   \sum^{N-1}_{n=0}
+     n\bfs_n(\tau)\left(\bfs_n^{\prime} (\tau)\right)^{*} \}
 \end{align}
-
-
-\begin{align}
-  \frac{\partial ^2 \textrm{ln}\{g(f_D,\tau)\} }{\partial ^2  \tau}  & = \frac{|\beta|}{\sigma ^{2}}\sum_{n=1}^{N}[|r(nT) |s^{\prime \prime}(nT - \tau)|\cos{(\phi_{s^{\prime \prime}}(nT - \tau) - \phi_{s^{\prime}}(nT - \tau))} \ldots \nonumber \\
-                                                                     & \times\cos{(2\pi f_DT n + \phi_{\beta} + \phi_r(nT) + \phi_{s^{\prime}}(nT - \tau))} \ldots \nonumber \\
-                                                                     & +|s^{\prime}(nT - \tau)|\sin{(2\pi f_DT n + \phi_{\beta} + \phi_r(nT) + \phi_{s^{\prime}}(nT - \tau))}\phi^{\prime}_{s^{\prime}}(nT - \tau) \nonumber \\
-  & + \Gamma ^{\prime}(\tau)
-\end{align}
-
-\begin{align}
-  \frac{\partial ^2 \textrm{ln}\{g(f_D,\tau)\} }{\partial   \tau \partial f_D}  & =  \frac{\partial }{\partial  \tau} \frac{2\pi T_s |\beta|}{\sigma ^2} \sum_{n=1}^{N} n|r(nT_s)|s(nT_s - \tau)|\sin{(2\pi f_DT_s n + \phi_{\beta} + \phi_r(nT_s) + \phi_{s}(nT_s - \tau))} \nonumber \\
-                                                                                & = -\frac{2\pi T_s |\beta|}{\sigma ^2} \sum_{n=1}^{N}[ n|r(nT)|s^{\prime}(nT - \tau)|\cos{(\phi_{s^{\prime}}(nT - \tau) - \phi_{s}(nT - \tau))} \ldots \nonumber \\
-                                                                                & \times \sin{(2\pi f_DT_s n + \phi_{\beta} + \phi_r(nT_s) + \phi_{s}(nT_s - \tau))}  \ldots \nonumber \\
-                                                                                & + |s(nT_s - \tau)|\cos{(2\pi f_DT_s n + \phi_{\beta} + \phi_r(nT_s) + \phi_{s}(nT_s - \tau))}\phi^{\prime}_{s}(nT_s - \tau)]
-\end{align}
-
 
 
 \end{document}
