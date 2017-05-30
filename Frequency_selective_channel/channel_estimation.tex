@@ -1,0 +1,54 @@
+\documentclass[12pt,a4paper,twoside,english]{article}
+
+
+\input{packages}
+
+\input{mymath}
+%\input{../../acronyms.tex}
+
+\begin{document}
+	
+\section{System Model}	
+
+
+Consider a $N_r \times N_t$ channel matrix between transmitter and receiver that
+is frequency selective with $N_c$ delay taps. Each tap is denoted as $\bfH_d$,
+$d=\{0,1, \ldots, N_c-1\}$. The variable $\rho$ denotes the average received power and $\bfz_n \sim $
+$\mathcal{N}(0,\sigma ^2\bfI)$ the circularly symmetric complex Gaussian
+distributed noise vector, therefore, the received signal is expressed as
+
+\begin{equation}
+  \label{eq:rx_signal}
+   \bfr_{l,n} = \sqrt{\rho} \sum_{d=0}^{N_c-1} \bfH_d\bff_{l}s_{n-d} + \bfz_{l,n},
+\end{equation}
+where $s_{n}$ is the $n$th non-zero of the training frame of length $N + N_c-1$
+\begin{equation}
+  \label{eq:frame}
+  \bfs = [0, \ldots, 0,  s_1, s_2, \ldots, s_N ].
+\end{equation}
+At the receiver, and a $\textrm{RF}$  combiner $\bfw_k$ is applied over the
+training frame, so that the combiner output is expressed as
+\begin{equation}
+  \label{eq:output_combiner}
+   y_{k,l,n} = \sqrt{\rho}\bfw^H_k \sum_{d=0}^{N_c-1} \bfH_d\bff_{l}s_{n-d} + z_{k,l,n},
+ \end{equation}
+ where $z_{k,l,n} = w^H_k\bfz_{l,n}$
+The output signal can described in term of tensor notation
+
+\begin{equation}
+  \label{eq:output_combiner_tensor}
+  y_{k,l,n} =  \calH \times_1 \bfw^H_k \times_2 \bff_{l} \times \bfs_n,
+\end{equation}
+where $\calH$ is generated from the concatenation in the third dimension of the $N_c$ delay taps.
+Assuming a collection  of transmitter and receiver beams, i.e.
+$l=\{1,\ldots , L \}$ and $k=\{1,\ldots , K \}$, respectively, and the $N$ time
+instants within the training frame, we can express the signal model as the
+third-order tensor
+
+\begin{equation}
+  \label{eq:tensor_model}
+  \calY =  \calH \times_1 \bfW \times_2 \bfF \times_3 \bfS + \calZ \times_1 W,
+\end{equation}
+where $\bfS$ is toeplitz because there is a convolution operation over the third dimension.
+    
+\end{document}
