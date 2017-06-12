@@ -5,6 +5,10 @@
                      '(("IEEEtran" "conference")))
    (TeX-run-style-hooks
     "latex2e"
+    "latex-aux/packages"
+    "latex-aux/mymath"
+    "latex-aux/acronyms"
+    "latex-aux/symbols"
     "IEEEtran"
     "IEEEtran10")
    (LaTeX-add-labels

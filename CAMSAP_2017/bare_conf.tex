@@ -71,18 +71,19 @@
 % \documentclass[conference]{../sty/IEEEtran}
 
 
+\input{latex-aux/packages}
 
-\input{../../latex-aux/packages}
+\input{latex-aux/mymath}
 
-\input{../../latex-aux/mymath}
+\input{latex-aux/acronyms.tex}
 
-% \input{../../acronyms.tex}
+\input{latex-aux/symbols.tex}
 
 \begin{document}
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{Channel Estimation of Frequency Selective Channels Using Sparse Tensor Processing}
+\title{Channel Estimation of Frequency Selective Channels Using Sparse PARAFAC Model}
 
 
 % author names and affiliations
@@ -176,49 +177,51 @@ into one big column  vector; $\otimes$ stands for the Kronecker product and
 $\odot$ is the Khatri-Rao product (column-wise Kronecker product) \cite{Sidiropoulos:2000,Sidiropoulos:2012}. 
 \section{System Model}
 
-Consider a single user \gls{mimo} system with tranmitter and receiver equipped with
-$N_t$  and  $N_r$ antennas, respectively.
+Consider a single user \gls{mimo} system with transmitter and receiver equipped with
+\gls{nAntTx} and  \gls{nAntRx} antennas, respectively. Assume that both transmitter and
+receiver have a hybrid beamforming structure with \gls{nRFTx} and \gls{nRFTx} chains.
 
 
-Consider a $N_r \times N_t$ channel matrix between transmitter and receiver
-composed by a summation of  $N_c$ delay tap matrices $\bfH_d$,
-$d=\{0,1, \ldots, N_c-1\}$. The variable $\rho$ denotes the average received power and $\bfz_n \sim $
-$\mathcal{N}(0,\sigma ^2\bfI)$ the circularly symmetric complex Gaussian
+Consider a  $\gls{nAntRx} \times \gls{nAntTx}$  channel matrix between transmitter and receiver
+composed by a summation of  \gls{nTaps} delay tap matrices $\gls{chMtx}_{\gls{tapIdx}}$,
+$\gls{tapIdx}=\{0,1, \ldots, \gls{nTaps}-1\}$. The variable $\rho$ denotes the average received power and $\gls{noiseVec}_{\gls{timeIdx}} \sim $
+$\mathcal{N}(0,\sigma ^2\gls{noiseCov})$ the circularly symmetric complex Gaussian
 distributed noise vector, therefore, the received signal is expressed as
 
 \begin{equation}
   \label{eq:rx_signal}
-   \bfr_{l,n} = \sqrt{\rho} \sum_{d=0}^{N_c-1} \bfH_d\bff_{l}s_{n-d} + \bfz_{l,n},
+  \gls{rxVec}_{\gls{txBeamIdx},\gls{timeIdx}} = \sqrt{\rho} \sum_{\gls{tapIdx}=0}^{\gls{nTaps}-1} \gls{chMtx}_{\gls{tapIdx}} \gls{txBeamVec}_{\gls{txBeamIdx}}s_{\gls{timeIdx}-\gls{tapIdx}} + \gls{noiseVec}_{\gls{txBeamIdx},\gls{timeIdx}},
 \end{equation}
-where $s_{n}$ is the $n$th non-zero of the training frame of length $N + N_c-1$
+where $\gls{pSym}_{\gls{timeIdx}}$ is the \gls{timeIdx}th non-zero of the
+training frame of length $\gls{nTime} + \gls{nTaps}-1$
 \begin{equation}
   \label{eq:frame}
-  \bfs = [0, \ldots, 0,  s_1, s_2, \ldots, s_N ].
+  \gls{pSymVec} = [0, \ldots, 0,  \gls{pSym}_1, \gls{pSym}_2, \ldots, \gls{pSym}_{\gls{nTime}} ].
 \end{equation}
-At the receiver, and a $\textrm{RF}$  combiner $\bfw_k$ is applied over the
+At the receiver, and a $\gls{RF}$  combiner $\bfw_k$ is applied over the
 training frame, so that the combiner output is expressed as
 \begin{equation}
   \label{eq:output_combiner}
-   y_{k,l,n} = \sqrt{\rho}\bfw^H_k \sum_{d=0}^{N_c-1} \bfH_d\bff_{l}s_{n-d} + z_{k,l,n},
+   \gls{rxOutput}_{\gls{rxBeamIdx},\gls{txBeamIdx},\gls{timeIdx}} = \sqrt{\rho}\gls{rxBeamVec}^T_{\gls{rxBeamIdx}} \sum_{d=0}^{N_c-1} \gls{chMtx}_{\gls{tapIdx}}\gls{txBeamVec}_{\gls{txBeamIdx}}s_{\gls{timeIdx}-\gls{tapIdx}} + \gls{noise}_{\gls{rxBeamIdx},\gls{txBeamIdx},\gls{timeIdx}},
  \end{equation}
- where $z_{k,l,n} = w^H_k\bfz_{l,n}$
+ where $\gls{noise}_{\gls{rxBeamIdx},\gls{txBeamIdx},\gls{timeIdx}} = \gls{rxBeamVec}^H_{\gls{rxBeamIdx}}\gls{noiseVec}_{\gls{txBeamIdx},\gls{timeIdx}}$
 The output signal can described in term of tensor notation
 
 \begin{equation}
   \label{eq:output_combiner_tensor}
-  y_{k,l,n} =  \calH \times_1 \bfw^H_k \times_2 \bff_{l} \times \bfs_n,
+  \gls{rxOutput}_{\gls{rxBeamIdx},\gls{txBeamIdx},\gls{timeIdx}} =  \gls{chTen} \times_1 \gls{rxBeamVec}_{\gls{rxBeamIdx}} \times_2 \gls{txBeamVec}_{\gls{txBeamIdx}} \times \gls{pSymVec}_{\gls{timeIdx}},
 \end{equation}
-where $\calH$ is generated from the concatenation in the third dimension of the $N_c$ delay taps.
-Assuming a collection  of transmitter and receiver beams, i.e.
-$l=\{1,\ldots , L \}$ and $k=\{1,\ldots , K \}$, respectively, and the $N$ time
+where $\gls{chTen}$ is generated from the concatenation in the third dimension
+of the $\gls{nTaps}$ delay taps. Assuming a collection  of transmitter and receiver beams, i.e.
+$\gls{txBeamIdx}=\{1,\ldots , \gls{nTxBeam} \}$ and $\gls{rxBeamIdx}=\{1,\ldots , \gls{nRxBeam} \}$, respectively, and the $\gls{nTime}$ time
 instants within the training frame, we can express the signal model as the
-third-order tensor
+third-order tensor \cite{Sidiropoulos:2000,Cichocki:2009}
 
 \begin{equation}
   \label{eq:tensor_model}
-  \calY =  \calH \times_1 \bfW \times_2 \bfF \times_3 \bfS + \calZ \times_1 W,
+  \calY =   \gls{chTen}\times_1  \gls{rxBeamMtx} \times_2  \gls{txBeamMtx}\times_3 \gls{pSymMtx} + \gls{noiseTen} \times_1 \gls{rxBeamMtx}  ,
 \end{equation}
-where $\bfS$ is toeplitz because there is a convolution operation over the third dimension.
+where \gls{pSymMtx} is toeplitz because there is a convolution operation over the third dimension.
 
 
 \section{Conclusion}
@@ -232,3 +235,8 @@ The conclusion goes here.
 \end{document}
 
 
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

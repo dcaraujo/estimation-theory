@@ -60,7 +60,7 @@ where $\bfe[n] = n\textrm{e}^{-2\pi \jmath f_DT n}$ and $\tilde{\bfe}[n] = \text
 \]
 
 The inverse of Fisher matrix is
-\[  \bfI(f_D,\tau) = \frac{1}{\textrm{det}(\bfI(f_D,\tau))}
+\[  \bfI(f_D,\tau)^{-1} = \frac{1}{\textrm{det}(\bfI(f_D,\tau))}
 \begin{bmatrix}
   2\textrm{Re}\{  4 \pi^2 T^2 |\beta|^2 \sum^{N-1}_{n=0}|\bfs^{\prime}_n
   (\tau)|^2 \}  &
@@ -70,13 +70,44 @@ The inverse of Fisher matrix is
      \pi^2 T^2|\beta|^2 \sum^{N-1}_{n=0}n^2|\bfs_n (\tau)|^2  \}  \\
 \end{bmatrix}
 \]
+
+\[  \bfI(f_D,\tau)^{-1} = \frac{1}{\textrm{det}(\bfI(f_D,\tau))}
+\begin{bmatrix}
+  2\textrm{Re}\{  4 \pi^2 T^2 |\beta|^2 \sum^{N-1}_{n=0}|\bfs^{\prime}_n
+  (\tau)|^2 \}  &
+   - 2\textrm{Re}\{ 2\pi T   \sum^{N-1}_{n=0} n\bf|s_n^{*}
+   (\tau)||\bfs_n^{\prime} (\tau)|\textrm{exp}^{\jmath (\phi_{s} + \phi_{s^{\prime}} + \pi/2)} \} \\
+     - 2\textrm{Re}\{ 2\pi T   \sum^{N-1}_{n=0}
+     n|\bfs_n(\tau)||\bfs_n^{\prime} (\tau)|\textrm{exp}^{\jmath (\phi_{s} - \phi_{s^{\prime}} + \pi/2)} \} \} & 2\textrm{Re}\{ 4
+     \pi^2 T^2|\beta|^2 \sum^{N-1}_{n=0}n^2|\bfs_n (\tau)|^2  \}  \\
+\end{bmatrix}
+\]
+
+
+
+\[  \bfI(f_D,\tau)^{-1} = \frac{1}{\textrm{det}(\bfI(f_D,\tau))}
+\begin{bmatrix}
+  8 \pi^2 T^2 |\beta|^2 \sum^{N-1}_{n=0}|\bfs^{\prime}_n
+  (\tau)|^2 &
+    4\pi T   \sum^{N-1}_{n=0} n|\bfs_n^{*}
+   (\tau)||\bfs_n^{\prime} (\tau)|\sin{(\phi_{s,n}(\tau) + \phi_{s^{\prime},n}(\tau))} \\
+     4\pi T   \sum^{N-1}_{n=0}
+     n|\bfs_n(\tau)||\bfs_n^{\prime} (\tau)|\sin{(\phi_{s,n}(\tau) - \phi_{s^{\prime},n}(\tau))}  & 8
+     \pi^2 T^2|\beta|^2 \sum^{N-1}_{n=0}n^2|\bfs_n (\tau)|^2  \\
+\end{bmatrix}
+\]
+
+
+
 where
 
 \begin{align}
-  \textrm{det}(\bfI(f_D,\tau)) & =  64 \pi^4 T^4 |\beta|^4 \sum^{N-1}_{n=0}\sum^{N-1}_{m=0}n^2|\bfs^{\prime}_n
+  \textrm{det}(\bfI(f_D,\tau)) & =  64 \pi^4 T^4 |\beta|^4 \sum^{N-1}_{n=0}\sum^{N-1}_{m=0}nm|\bfs^{\prime}_n
                                  (\tau)|^2|\bfs_m (\tau)|^2 - \ldots \nonumber \\
-                                 & = 4\textrm{Re}\{ 2\pi \jmath T   \sum^{N-1}_{n=0} n\bfs_n^{*} (\tau)\bfs_n^{\prime} (\tau) \}\textrm{Re}\{ 2\pi \jmath T   \sum^{N-1}_{n=0}
-     n\bfs_n(\tau)\left(\bfs_n^{\prime} (\tau)\right)^{*} \}
+                                 & 16 \pi^2 T^2 \sum^{N-1}_{n=0}\sum^{N-1}_{m=0} nm|\bfs_n
+                                   (\tau)||\bfs_n^{\prime} (\tau)||\bfs_m(\tau)||\bfs_m^{\prime} (\tau)| \nonumber \\
+                               & \times \sin{(\phi_{s,n}(\tau) + \phi_{s^{\prime},n}(\tau))}
+     \sin{(\phi_{s,m}(\tau) - \phi_{s^{\prime},m}(\tau))}
 \end{align}
 
 
