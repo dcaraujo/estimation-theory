@@ -1,0 +1,3 @@
+[submodule "CAMSAP_2017/latex-aux"]
+	path = CAMSAP_2017/latex-aux
+	url = git@github.com:dcaraujo/latex-aux.git
