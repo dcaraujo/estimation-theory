@@ -125,7 +125,6 @@ Email: andre@gtel.ufc.br}}
 
 
 
-
 % use for special paper notices
 %\IEEEspecialpapernotice{(Invited Paper)}
 
@@ -179,27 +178,44 @@ $\odot$ is the Khatri-Rao product (column-wise Kronecker product) \cite{Sidiropo
 
 Consider a single user \gls{mimo} system with transmitter and receiver equipped with
 \gls{nAntTx} and  \gls{nAntRx} antennas, respectively. Assume that both transmitter and
-receiver have a hybrid beamforming structure with \gls{nRFTx} and \gls{nRFTx} chains.
+receiver employ a hybrid beamforming structure using  \gls{nRFTx} and
+\gls{nRFRx} \gls{RF} chains, respectively. The spatial filter at the transmitter
+and receiver are $\gls{txBeamMtx}=\gls{txAnalogMtx}\gls{txDigitalMtx}$ $\in$
+$\mathbb{C}^{\gls{nAntTx} \times \gls{nTxBeam}}$ and
+$\gls{rxBeamMtx}=\gls{rxAnalogMtx}\gls{rxDigitalMtx}$ $\mathbb{C}^{\gls{nAntRx}
+  \times \gls{nRxBeam}}$, respectively,  where $\gls{nTxBeam} \leq
+\gls{nRFTx}$ and $\gls{nRxBeam} \leq
+\gls{nRFRx}$  denotes the number of beams used in the same
+communication resource at the transmitter and receiver, respectively. The transmitter uses multiple beams to send a single pilot sequence with length \gls{pLength}
+into \gls{nTxBeam} directions, and the receiver uses the multiple \gls{RF}
+chains to collect the incoming training signal from different directions. The
+channel matrix is defined as a summation of  \gls{nTaps} delay tap matrices 
+$\gls{chMtx}_{\gls{tapIdx}}$, $\gls{tapIdx}=\{0,1, \ldots, \gls{nTaps}-1\}$. The
+variable $\rho$ denotes the average received power and
+$\gls{noiseVec}_{\gls{timeIdx}} \sim $ $\mathcal{N}(0,\sigma ^2\gls{noiseCov})$
+the circularly symmetric complex Gaussian distributed noise vector, therefore, the received signal is expressed as
 
-
-Consider a  $\gls{nAntRx} \times \gls{nAntTx}$  channel matrix between transmitter and receiver
-composed by a summation of  \gls{nTaps} delay tap matrices $\gls{chMtx}_{\gls{tapIdx}}$,
-$\gls{tapIdx}=\{0,1, \ldots, \gls{nTaps}-1\}$. The variable $\rho$ denotes the average received power and $\gls{noiseVec}_{\gls{timeIdx}} \sim $
-$\mathcal{N}(0,\sigma ^2\gls{noiseCov})$ the circularly symmetric complex Gaussian
-distributed noise vector, therefore, the received signal is expressed as
-
+% Consider a  $\gls{nAntRx} \times \gls{nAntTx}$  channel matrix between transmitter and receiver
+% composed by a summation of  \gls{nTaps} delay tap matrices $\gls{chMtx}_{\gls{tapIdx}}$,
+% $\gls{tapIdx}=\{0,1, \ldots, \gls{nTaps}-1\}$. The variable $\rho$ denotes the average received power and $\gls{noiseVec}_{\gls{timeIdx}} \sim $
+% $\mathcal{N}(0,\sigma ^2\gls{noiseCov})$ the circularly symmetric complex Gaussian
+% distributed noise vector, therefore, the received signal is expressed as
 \begin{equation}
   \label{eq:rx_signal}
   \gls{rxVec}_{\gls{txBeamIdx},\gls{timeIdx}} = \sqrt{\rho} \sum_{\gls{tapIdx}=0}^{\gls{nTaps}-1} \gls{chMtx}_{\gls{tapIdx}} \gls{txBeamVec}_{\gls{txBeamIdx}}s_{\gls{timeIdx}-\gls{tapIdx}} + \gls{noiseVec}_{\gls{txBeamIdx},\gls{timeIdx}},
 \end{equation}
-where $\gls{pSym}_{\gls{timeIdx}}$ is the \gls{timeIdx}th non-zero of the
-training frame of length $\gls{nTime} + \gls{nTaps}-1$
+where \gls{txBeamIdx} is the beam index associated to transmit a given frame, t
+$\gls{pSym}_{\gls{timeIdx}}$ is the \gls{timeIdx}th non-zero instance of the
+training frame 
 \begin{equation}
   \label{eq:frame}
-  \gls{pSymVec} = [0, \ldots, 0,  \gls{pSym}_1, \gls{pSym}_2, \ldots, \gls{pSym}_{\gls{nTime}} ].
+  \gls{pSymVec} = [0, \ldots, 0,  \gls{pSym}_1, \gls{pSym}_2, \ldots, \gls{pSym}_{\gls{nTime}} ]
 \end{equation}
-At the receiver, and a $\gls{RF}$  combiner $\bfw_k$ is applied over the
+of length $\gls{nTime}+\gls{nTaps}-1$.
+
+The receiver applies the combiner $\gls{rxBeamVec}_{\gls{rxBeamIdx}}$  over the
 training frame, so that the combiner output is expressed as
+
 \begin{equation}
   \label{eq:output_combiner}
    \gls{rxOutput}_{\gls{rxBeamIdx},\gls{txBeamIdx},\gls{timeIdx}} = \sqrt{\rho}\gls{rxBeamVec}^T_{\gls{rxBeamIdx}} \sum_{d=0}^{N_c-1} \gls{chMtx}_{\gls{tapIdx}}\gls{txBeamVec}_{\gls{txBeamIdx}}s_{\gls{timeIdx}-\gls{tapIdx}} + \gls{noise}_{\gls{rxBeamIdx},\gls{txBeamIdx},\gls{timeIdx}},
@@ -209,7 +225,7 @@ The output signal can described in term of tensor notation
 
 \begin{equation}
   \label{eq:output_combiner_tensor}
-  \gls{rxOutput}_{\gls{rxBeamIdx},\gls{txBeamIdx},\gls{timeIdx}} =  \gls{chTen} \times_1 \gls{rxBeamVec}_{\gls{rxBeamIdx}} \times_2 \gls{txBeamVec}_{\gls{txBeamIdx}} \times \gls{pSymVec}_{\gls{timeIdx}},
+  \gls{rxOutput}_{\gls{rxBeamIdx},\gls{txBeamIdx},\gls{timeIdx}} =  \gls{chTen} \times_1 \gls{rxBeamVec}_{\gls{rxBeamIdx}} \times_2 \gls{txBeamVec}_{\gls{txBeamIdx}} \times_3 \gls{pSymVec}_{\gls{timeIdx}},
 \end{equation}
 where $\gls{chTen}$ is generated from the concatenation in the third dimension
 of the $\gls{nTaps}$ delay taps. Assuming a collection  of transmitter and receiver beams, i.e.
@@ -224,13 +240,25 @@ third-order tensor \cite{Sidiropoulos:2000,Cichocki:2009}
 where \gls{pSymMtx} is toeplitz because there is a convolution operation over the third dimension.
 
 
+\section{Channel Estimation via Multi-way Compressive Sensing}
+\label{sec:multiway_cs}
+
+In this section, we propose a channel estimator method that leverages on the
+\gls{PARAFAC} uniqueness properties  and the joint sparse of the transmitter-receiver
+angular domain and delay domain.
+
+\subsection{Sparse \gls{PARAFAC} Formulation}
+\label{sec:parafac_model}
+
+
+
 \section{Conclusion}
 The conclusion goes here.
 
 \section*{Acknowledgment}
 
 \bibliographystyle{IEEEtran}
-\bibliography{../../latex-aux/reference}
+\bibliography{latex-aux/reference}
 
 \end{document}
 
