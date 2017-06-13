@@ -235,23 +235,102 @@ third-order tensor \cite{Sidiropoulos:2000,Cichocki:2009}
 
 \begin{equation}
   \label{eq:tensor_model}
-  \calY =   \gls{chTen}\times_1  \gls{rxBeamMtx} \times_2  \gls{txBeamMtx}\times_3 \gls{pSymMtx} + \gls{noiseTen} \times_1 \gls{rxBeamMtx}  ,
+  \calY =   \gls{chTen}\times_1  \gls{rxBeamMtx}^T \times_2  \gls{txBeamMtx}^T \times_3 \gls{pSymMtx} + \gls{noiseTen} \times_1 \gls{rxBeamMtx}^T  ,
 \end{equation}
 where \gls{pSymMtx} is toeplitz because there is a convolution operation over the third dimension.
 
+There are two basic multiway models largely used in the literature: Tucker3 and
+\gls{PARAFAC}. The first is not identifiable in general, but it is very useful for data compression
+as shown in \cite{Duarte:2012}. The second is identifiable  under specific
+conditions which respect the \textit{Kruskal-rank} condition
+\cite{Sidiropoulos:2000,Smilde:2004}. We briefly review the \gls{PARAFAC} model
+since its properties are useful to develop our estimator identifiability
+condition.
 
-\section{Channel Estimation via Multi-way Compressive Sensing}
+
+\section{Channel Estimation via Multiway Compressive Sensing}
 \label{sec:multiway_cs}
 
 In this section, we propose a channel estimator method that leverages on the
-\gls{PARAFAC} uniqueness properties  and the joint sparse of the transmitter-receiver
-angular domain and delay domain.
+\gls{PARAFAC} uniqueness properties and the joint sparse of the transmitter-receiver
+angular domain and delay domain. 
+
 
 \subsection{Sparse \gls{PARAFAC} Formulation}
 \label{sec:parafac_model}
 
+Consider a geometric  channel model for a frequency selective channel
+\begin{align}
+  \label{eq:tap_model}
+  \gls{chMtx} & = \sum_{\gls{tapIdx}}^{\gls{nTaps}-1}  \gls{chMtx}_{\gls{tapIdx}} \nonumber \\
+              & = \sum_{\gls{tapIdx}}^{\gls{nTaps}-1}\gls{cplxGain}_{\gls{tapIdx}}\gls{pulse}(\gls{tapIdx}\gls{timeSamp} - \gls{delay}_{\gls{tapIdx}})\gls{rxStrVec}\gls{txStrVec}^H,
+\end{align}
+where $\gls{pulse}(\gls{delay})$
+denotes the system pulse shaping evaluated at
+$\gls{delay}$,$\gls{cplxGain}_{\gls{tapIdx}}$ $\in$ $\mathbb{C}$ is the complex
+gain associated to the $\gls{tapIdx}$th path, $\gls{delay}_{\gls{tapIdx}}$ $\in$
+$\mathbb{R}$ is the delay of the \gls{tapIdx}th path, \gls{azm} $\in$ $[0,2\pi)$
+and \gls{elev} $\in$ $[\pi/2, \pi)$ are the azimuth and elevation (AoA/AoD),
+respectively, and \gls{rxStrVec} $\in$ $\mathbb{C}^{\gls{nAntRx}}$ and
+\gls{txStrVec} $\in$ $\mathbb{C}^{\gls{nAntTx}}$ are the antenna response vector
+of the transmitter and receiver, respectively.
 
+The channel model in \eqref{eq:tap_model} can be conveniently represented as a
+third-order tensor by concatenating the  $\gls{chMtx}_{\gls{tapIdx}}$ to form a
+cube. This results in a \gls{PARAFAC} model to which the core tensor is
+the identity tensor \gls{eyeTen}, the factor matrices \gls{rxStrMtx} $\in$
+$\mathbb{C}^{\gls{nAntRx} \times \gls{nTaps}}$  and \gls{txStrMtx} $\in$
+$\mathbb{C}^{\gls{nAntTx} \times \gls{nTaps}}$ contain the steering vectors
+\gls{rxStrVec} and \gls{txStrVec} $\forall$
+$\gls{tapIdx}=\{0,\ldots,\gls{nTaps}-1\}$, and  $\gls{delayMtx} =
+\textrm{diag}\{\gls{cplxGain}_0\gls{pulse}(\gls{timeIdx}\gls{timeSamp} - \gls{delay}_{0}),
+\ldots , \gls{cplxGain}_{\gls{nTaps}-1}\gls{pulse}(\gls{timeIdx}\gls{timeSamp} -
+\gls{delay}_{\gls{nTaps}-1})\}$. The spatio-delay channel response can be
+written as 
+\begin{equation}
+  \label{eq:mode_product_parafac}
+  \gls{chTen} = \gls{eyeTen} \times _1 \gls{rxStrMtx} \times_2  \gls{txStrMtx}^{*} \times_3 \gls{delayMtx}.
+\end{equation}
 
+Substituting \eqref{eq:mode_product_parafac} into  \eqref{eq:tensor_model}, the
+received signal can be represented as \gls{PARAFAC} model up to a model error
+accounted in $\gls{errorTen} = \gls{noiseTen} \times \gls{rxBeamMtx}^H$
+\begin{equation}
+  \label{eq:parafac_rx_signal}
+    \gls{rxOutputTen}=   \gls{eyeTen} \times_1  \gls{rxBeamMtx}^T\gls{rxStrMtx} \times_2  \gls{txBeamMtx}^T\gls{txStrMtx}^{*} \times_3 \gls{pSymMtx}^T\gls{delayMtx} + \gls{errorTen}.
+\end{equation}
+Comparing \eqref{eq:mode_product_parafac} and \eqref{eq:parafac_rx_signal},
+the matrices  $\gls{rxBeamMtx}^T$,  $\gls{txBeamMtx}^T$, and $\gls{pSymMtx}^T$
+compress 1-mode, 2-mode, and 3-mode, respectively. Therefore, the compressed
+data also follows \gls{PARAFAC} model of size $\gls{nRxBeam} \times
+\gls{nTxBeam} \times \gls{pLength}$.
+
+The traditional approach of identifying the factor matrices by splitting the
+tensor problem into three \gls{ls} problems, one for each mode, has no guarantee
+of uniqueness because the number of equations in each mode
+is less than the number of variables wished to estimated. However, the recent
+results in \cite{Sidiropoulos:2012} extended the uniqueness conditions of
+\textit{Kruskal-rank} for sparse \gls{PARAFAC} model in which the sparsity
+is in the factor matrices. This differs from the approach adopted in
+\cite{Duarte:2012}, where the authors assume sparsity in the tensor core of a
+Tucker3 model.
+
+Assuming that the tensor channel $\gls{chTen}$  admits a sparse representation,
+the receive signal can again be rewritten as
+\begin{equation}
+  \label{eq:sparse_parafac_rx_signal}
+    \gls{rxOutputTen}=   \gls{eyeTen} \times_1  \gls{rxBeamMtx}^T\gls{orTh}_1\gls{spMtx}_1 \times_2  \gls{txBeamMtx}^T\gls{orTh}_2\gls{spMtx}_2 \times_3 \gls{pSymMtx}^T\gls{orTh}_3\gls{spMtx}_3 + \gls{errorTen}.
+\end{equation}
+where $\gls{orTh}_1$ $\in$ $\mathbb{C}^{\gls{nAntRx} \times \gls{nAntRx} }$,
+$\gls{orTh}_2$ $\in$ $\mathbb{C}^{\gls{nAntTx} \times \gls{nAntTx} }$, and $\gls{orTh}_3$ $\in$ $\mathbb{C}^{\gls{nTimeSamples} \times \gls{nTimeSamples} }$, are orthogonal
+bases to the tensor modes, and $\gls{spMtx}_1$ $\in$
+$\mathbb{C}^{\gls{nAntTx}\times \gls{nTaps}}$, $\gls{spMtx}_2$ $\in$
+$\mathbb{C}^{\gls{nAntRx}\times \gls{nTaps}}$, and $\gls{spMtx}_3$ $\in$
+$\mathbb{C}^{\gls{nTimeSamples}\times \gls{nTaps}}$ are sparse matrices
+associated to each tensor mode. Given that $\gls{spMtx}_1$, $\gls{spMtx}_2$ and
+$\gls{spMtx}_3$ are sparse, consider that $\gls{sparsity}_1$ $(\gls{sparsity}_2,\gls{sparsity}_3)$ is an
+upper bound on the number of non-zero elements per column of $\gls{spMtx}_1$
+(respectively $\gls{spMtx}_2,\gls{spMtx}_3$).
 \section{Conclusion}
 The conclusion goes here.
 
