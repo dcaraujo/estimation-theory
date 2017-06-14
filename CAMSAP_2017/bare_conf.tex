@@ -194,7 +194,6 @@ $\gls{chMtx}_{\gls{tapIdx}}$, $\gls{tapIdx}=\{0,1, \ldots, \gls{nTaps}-1\}$. The
 variable $\rho$ denotes the average received power and
 $\gls{noiseVec}_{\gls{timeIdx}} \sim $ $\mathcal{N}(0,\sigma ^2\gls{noiseCov})$
 the circularly symmetric complex Gaussian distributed noise vector, therefore, the received signal is expressed as
-
 % Consider a  $\gls{nAntRx} \times \gls{nAntTx}$  channel matrix between transmitter and receiver
 % composed by a summation of  \gls{nTaps} delay tap matrices $\gls{chMtx}_{\gls{tapIdx}}$,
 % $\gls{tapIdx}=\{0,1, \ldots, \gls{nTaps}-1\}$. The variable $\rho$ denotes the average received power and $\gls{noiseVec}_{\gls{timeIdx}} \sim $
@@ -222,7 +221,6 @@ training frame, so that the combiner output is expressed as
  \end{equation}
  where $\gls{noise}_{\gls{rxBeamIdx},\gls{txBeamIdx},\gls{timeIdx}} = \gls{rxBeamVec}^H_{\gls{rxBeamIdx}}\gls{noiseVec}_{\gls{txBeamIdx},\gls{timeIdx}}$
 The output signal can described in term of tensor notation
-
 \begin{equation}
   \label{eq:output_combiner_tensor}
   \gls{rxOutput}_{\gls{rxBeamIdx},\gls{txBeamIdx},\gls{timeIdx}} =  \gls{chTen} \times_1 \gls{rxBeamVec}_{\gls{rxBeamIdx}} \times_2 \gls{txBeamVec}_{\gls{txBeamIdx}} \times_3 \gls{pSymVec}_{\gls{timeIdx}},
@@ -232,10 +230,9 @@ of the $\gls{nTaps}$ delay taps. Assuming a collection  of transmitter and recei
 $\gls{txBeamIdx}=\{1,\ldots , \gls{nTxBeam} \}$ and $\gls{rxBeamIdx}=\{1,\ldots , \gls{nRxBeam} \}$, respectively, and the $\gls{nTime}$ time
 instants within the training frame, we can express the signal model as the
 third-order tensor \cite{Sidiropoulos:2000,Cichocki:2009}
-
 \begin{equation}
   \label{eq:tensor_model}
-  \calY =   \gls{chTen}\times_1  \gls{rxBeamMtx}^T \times_2  \gls{txBeamMtx}^T \times_3 \gls{pSymMtx} + \gls{noiseTen} \times_1 \gls{rxBeamMtx}^T  ,
+  \gls{rxOutputTen} =   \gls{chTen}\times_1  \gls{rxBeamMtx}^T \times_2  \gls{txBeamMtx}^T \times_3 \gls{pSymMtx} + \gls{noiseTen} \times_1 \gls{rxBeamMtx}^T  ,
 \end{equation}
 where \gls{pSymMtx} is toeplitz because there is a convolution operation over the third dimension.
 
@@ -291,7 +288,6 @@ written as
   \label{eq:mode_product_parafac}
   \gls{chTen} = \gls{eyeTen} \times _1 \gls{rxStrMtx} \times_2  \gls{txStrMtx}^{*} \times_3 \gls{delayMtx}.
 \end{equation}
-
 Substituting \eqref{eq:mode_product_parafac} into  \eqref{eq:tensor_model}, the
 received signal can be represented as \gls{PARAFAC} model up to a model error
 accounted in $\gls{errorTen} = \gls{noiseTen} \times \gls{rxBeamMtx}^H$
@@ -301,22 +297,10 @@ accounted in $\gls{errorTen} = \gls{noiseTen} \times \gls{rxBeamMtx}^H$
 \end{equation}
 Comparing \eqref{eq:mode_product_parafac} and \eqref{eq:parafac_rx_signal},
 the matrices  $\gls{rxBeamMtx}^T$,  $\gls{txBeamMtx}^T$, and $\gls{pSymMtx}^T$
-compress 1-mode, 2-mode, and 3-mode, respectively. Therefore, the compressed
-data also follows \gls{PARAFAC} model of size $\gls{nRxBeam} \times
-\gls{nTxBeam} \times \gls{pLength}$.
-
-The traditional approach of identifying the factor matrices by splitting the
-tensor problem into three \gls{ls} problems, one for each mode, has no guarantee
-of uniqueness because the number of equations in each mode
-is less than the number of variables wished to estimated. However, the recent
-results in \cite{Sidiropoulos:2012} extended the uniqueness conditions of
-\textit{Kruskal-rank} for sparse \gls{PARAFAC} model in which the sparsity
-is in the factor matrices. This differs from the approach adopted in
-\cite{Duarte:2012}, where the authors assume sparsity in the tensor core of a
-Tucker3 model.
-
-Assuming that the tensor channel $\gls{chTen}$  admits a sparse representation,
-the receive signal can again be rewritten as
+compress 1-mode, 2-mode, and 3-mode, respectively. Therefore, the received
+tensor signal is the compressed version of the channel. Assuming that the tensor channel
+$\gls{chTen}$ admits a sparse representation, the receive signal can again be
+rewritten as
 \begin{equation}
   \label{eq:sparse_parafac_rx_signal}
     \gls{rxOutputTen}=   \gls{eyeTen} \times_1  \gls{rxBeamMtx}^T\gls{orTh}_1\gls{spMtx}_1 \times_2  \gls{txBeamMtx}^T\gls{orTh}_2\gls{spMtx}_2 \times_3 \gls{pSymMtx}^T\gls{orTh}_3\gls{spMtx}_3 + \gls{errorTen}.
@@ -331,6 +315,101 @@ associated to each tensor mode. Given that $\gls{spMtx}_1$, $\gls{spMtx}_2$ and
 $\gls{spMtx}_3$ are sparse, consider that $\gls{sparsity}_1$ $(\gls{sparsity}_2,\gls{sparsity}_3)$ is an
 upper bound on the number of non-zero elements per column of $\gls{spMtx}_1$
 (respectively $\gls{spMtx}_2,\gls{spMtx}_3$).
+
+
+
+To recover the \gls{csi}, both the channel and
+received signal tensors must obey the uniqueness condition of the
+\gls{PARAFAC} model. The \textit{Kruskal-rank} of $\gls{rxStrMtx}$, denoted as
+$k_{\gls{rxStrMtx}}$, is the maximum $k$ such that any $k$ columns of
+$\gls{rxStrMtx}$ are linearly independent $(k_{\gls{rxStrMtx}} <
+r_{\gls{rxStrMtx}} \equiv \textrm{rank}(\gls{rxStrMtx}) ) $. Given the channel
+tensor $\gls{chTen}$, if
+$k_{\gls{rxStrMtx}}+k_{\gls{txStrMtx}}+k_{\gls{delayMtx}} \geq 2\gls{nTaps} +
+2$, then $(\gls{rxStrMtx},\gls{txStrMtx},\gls{delayMtx})$ are unique up to a
+common column permutation and scaling \cite{Sidiropoulos:2000}. The uniqueness
+condition of the received tensor signal is given by \cite{Sidiropoulos:2012}
+%$\gls{sparsity}_1,(\gls{sparsity}_2$ and $,\gls{sparsity}_3$, and is stated in \cite{Sidiropoulos:2012}
+\begin{theorem}
+  \label{th.:compressed_parafac}
+    Considering the upper bounds $\gls{sparsity}_1,\gls{sparsity}_2,$ and
+    $\gls{sparsity}_3$ on the number of nonzero elements per column of
+    $\gls{spMtx}_1, \gls{spMtx}_2,$ and $\gls{spMtx}_3$, respectively, if
+    \begin{equation}
+      \label{eq.uniqueness_compress_parafac}
+      \min (\gls{nRxBeam},k_{\gls{spMtx}_1}) +\min (\gls{nTxBeam},k_{\gls{spMtx}_2}) + \min (\gls{pLength},k_{\gls{spMtx}_3}) \geq 2\gls{nTaps} + 2,
+    \end{equation}
+    and $\gls{nRxBeam} \geq 2 \gls{sparsity}_1$, $\gls{nTxBeam} \geq 2
+    \gls{sparsity}_2$, $\gls{pLength} \geq 2 \gls{sparsity}_3$, then the
+    matrices $\gls{spMtx}_1, \gls{spMtx}_2,$ and $\gls{spMtx}_3$ are almost sure identifiable.
+\end{theorem}
+
+The Theorem \ref{th.:compressed_parafac} asserts that the matrices
+$\gls{spMtx}_1, \gls{spMtx}_2,$ and $\gls{spMtx}_3$ are indentifiable from the
+received signal $\gls{rxOutputTen}$ if $\gls{nRxBeam}>k_{\gls{spMtx}_1}$,
+$\gls{nTxBeam}>k_{\gls{spMtx}_2}$, $\gls{pLength}>k_{\gls{spMtx}_3}$ as if the
+receiver has available the channel $\gls{chTen}$. It is important to highlight
+that if we decide to neglect the channel low-rank structure and attempt to
+estimate the sparse vector formed by $\gls{nTaps} \gls{sparsity}_1
+\gls{sparsity}_2 \gls{sparsity}_3$ non-zero elements, then
+$\gls{nRxBeam}\gls{nTxBeam}\gls{pLength} \geq 2 \gls{nTaps}\gls{sparsity}_1\gls{sparsity}_2\gls{sparsity}_3$
+must hold. Assuming
+$\gls{sparsity}_2=\gls{sparsity}_2=\gls{sparsity}_3=\gls{sparsity}$, the vector
+problem formulation needs $2\gls{nTaps}\gls{sparsity}^3$ measurements while the
+problem exploiting the \gls{PARAFAC} framework needs $8\gls{sparsity}^3$.
+Therefore, the number of measurements does not depend on the number of paths,
+but only the sparsity on the factor matrices. In principle, if we know
+$\gls{orTh}_1$, $\gls{orTh}_2$, and $\gls{orTh}_3$ that returns the sparsest
+factor matrices, the receiver  measures the channel  $\gls{chTen}$ using the fewest
+amount of samples, so the system overhead achieves the its lower-bound. Of
+course, more accurate estimations are possible the more samples are collected.
+
+\subsection{Algorithm Description}
+
+We exploit the principle of \gls{als} to fit the compressed \gls{PARAFAC} model
+obtained from noisy observations. After this, we compute separately the minimum $l_1$ norm
+solution for each factor matrix.
+
+The idea behind the \gls{als} consist of updating a subset of \gls{PARAFAC} parameters
+according. We define $\bfA =
+\gls{rxBeamMtx}^T\gls{orTh}_1\gls{spMtx}_1$, $\bfB =
+\gls{txBeamMtx}^T\gls{orTh}_2\gls{spMtx}_2$, and $\bfC =
+\gls{pSymMtx}^T\gls{orTh}_3\gls{spMtx}_3$   as the factor matrices of
+$\gls{rxOutputTen}$. We obtain them using \gls{ls} criterion conditioned on estimation of the remaining
+parameters. More specifically, we exploit the unfolding representations
+\begin{align}
+ \gls{rxOutputMtx}_1 = (\bfB \odot \bfC)\bfA^T \\
+ \gls{rxOutputMtx}_2 = (\bfC \odot \bfA)\bfB^T \\
+ \gls{rxOutputMtx}_3 = (\bfA \odot \bfB)\bfC^T
+\end{align}
+and recover $\bfA$, $\bfB$, and $\bfC$ by calculating the pseudoinverse of the
+matrix resulting from the Katri-rao product. For instance, the factor matrix of
+1-mode is $\hat{\bfA}^T = (\bfB \odot \bfC)^{\dagger}\gls{rxOutputMtx}_1 $;
+similarly, $\hat{\bfB}$ and $\hat{\bfC}$ are calculated. Repeat this procedure
+until the convergence. We summarize the steps of \gls{als} in the Table~\ref{alg.:als}. 
+
+\label{sec:algorithm}
+\begin{algorithm}
+    \caption{\gls{als} description } \label{alg.:als}
+    \begin{algorithmic}
+      \STATE Initialize factor matrices $\bfA$, $\bfB$, and $\bfC$.
+%      \STATE $\gls{rxOutputMtx}_1 \gets (\bfB \odot \bfC)\bfA^T$
+%      \STATE $\gls{rxOutputMtx}_2 \gets (\bfC \odot \bfA)\bfB^T$
+%      \STATE $\gls{rxOutputMtx}_3 \gets (\bfA \odot \bfB)\bfC^T$
+      \WHILE{ $ e > \sigma ^2$}
+      \STATE $\hat{\bfA}^T \gets (\bfB \odot \bfC)^{\dagger}\gls{rxOutputMtx}_1 $
+      \STATE $\hat{\bfB}^T \gets (\bfC \odot \hat{\bfA})^{\dagger}\gls{rxOutputMtx}_2 $
+      \STATE $\hat{\bfC}^T \gets ({\bfA} \odot \hat{\bfB})^{\dagger}\gls{rxOutputMtx}_3 $
+      \STATE $\hat{\gls{rxOutputMtx}}_1 \gets (\hat{\bfB} \odot \hat{\bfC})\hat{\bfA}^T$
+      \STATE $ e \gets \|\hat{\gls{rxOutputMtx}}_1 - \gls{rxOutputMtx}_1 \|^2_F/ \|\gls{rxOutputMtx}_1\|_F^2$
+      \ENDWHILE
+    \end{algorithmic}
+\end{algorithm}
+
+
+
+
+
 \section{Conclusion}
 The conclusion goes here.
 
