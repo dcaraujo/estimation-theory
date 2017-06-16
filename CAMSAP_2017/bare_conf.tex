@@ -91,13 +91,13 @@
 % affiliations
 \author{\IEEEauthorblockN{Daniel C. Ara\'ujo}
 \IEEEauthorblockA{Research Group of Wireless Communication (GTEL) \\Department of Teleinformatics\\
-Federal University of Ceará\\
+Federal University of Cear\'a\\
 Cear\'a, Fortaleza 60020-181\\
 Email: araujo@gtel.ufc.br}
 \and
 \IEEEauthorblockN{Andr\'e Lima F. de Almeida}
 \IEEEauthorblockA{Research Group of Wireless Communication (GTEL) \\Department of Teleinformatics\\
-Federal University of Ceará\\
+Federal University of Cear\'a\\
 Cear\'a, Fortaleza 60020-181\\
 Email: andre@gtel.ufc.br}}
 
@@ -164,6 +164,51 @@ The abstract goes here.
 
 
 \section{Introduction}
+
+Beamforming for 5G mobile communication systems promises to enable a great
+increase in wireless data rate due to the massive number of antennas intended to
+be implemented at the \gls{BS} . Massive \gls{mimo} has the potential to achieving
+extremely high energy and spectrum efficiency required by the 5G
+networks\cite{Larsson:2014}.
+Such a potential is achieved if the system
+\begin{inparaenum}[(i)]
+\item implements digital beamforming and
+\item has \gls{csi} available \cite{Gao:2016a}.
+\end{inparaenum}
+
+The implementation of complete digital architecture for massive \gls{mimo}
+system is a tremendous challenge. For each antenna element, it has associated a
+dedicated \gls{RF} chain, which includes power amplifier (\gls{lna} at the
+receiver), \gls{DAC} (\gls{ADC} at the receiver) and so on
+\cite{Venkateswaran:2008,Alkhateeb:2014}; therefore, when the number of antennas
+increases the power consumption from high resolution \gls{ADC} and \gls{DAC}
+becomes prohibitive \cite{Alkhateeb:2014,Alkhateeb:2016a}. The use of \gls{HB}
+to deploy massive \gls{mimo} has called attention, for its architecture can be
+implemented with limited number of \gls{RF} chains, i.e. the number of \gls{DAC}
+(\gls{ADC} at the receiver) is reduced. Essentially, the hybrid architecture has
+a digital part which performs the baseband processing using microprocessors
+whereas, the analog part is implemented at the \gls{RF} frequency by using a
+phase-shifter network \cite{Heath:2016,Alkhateeb:2014,Alkhateeb:2016a}.
+
+To design the \gls{HB} and hence providing the expected massive \gls{mimo} gains, the transceiver must have partial or complete \gls{csi}
+knowledge. The channel acquisition phase is crucial due to
+the large system overhead because the length of the pilot sequence grows proportionally
+to the number of antennas. Therefore, the development of a
+\gls{csi} estimator that fits to a hybrid massive \gls{mimo} transceiver is
+conditioned to the digital-analog architecture and the length of the pilot sequence
+\cite{Alkhateeb:2014,Alkhateeb:2016a}. The use of large bandwidth in the next
+generation of wireless systems creates an additional challenge which  is the
+frequency selective channel. The current paper particularly comprises all the three aspects
+\begin{inparaenum}[(i)]
+\item \gls{HB} architecture,
+\item pilot overhead, and
+\item frequency selective channel
+\end{inparaenum}
+and aims at proposing a novel \gls{csi} estimator.
+
+Although there some works to
+ which the \gls{HB} and channel estimation are considered such as 
+
 
 
 \textit{Notation}: A scalar is denoted in italic, e.g. $a$. A column vector is a
@@ -344,7 +389,34 @@ condition of the received tensor signal is given by \cite{Sidiropoulos:2012}
     matrices $\gls{spMtx}_1, \gls{spMtx}_2,$ and $\gls{spMtx}_3$ are almost sure identifiable.
 \end{theorem}
 
-The Theorem \ref{th.:compressed_parafac} asserts that the matrices
+Exploiting the Theorem \ref{th.:compressed_parafac}, the system can properly
+choose the number of receiver beams, transmit beams, pilot symbols that
+guarantee uniqueness of the model. Assume that the matrices $r_{\gls{spMtx}_1}=k_{\gls{spMtx}_1}$,
+$r_{\gls{spMtx}_2}=k_{\gls{spMtx}_2}$, and
+$r_{\gls{spMtx}_3}=k_{\gls{spMtx}_3}$, i.e. the factor matrices can not have a
+column that is a scaled version of another one. This means that the two
+distinct paths can not have the neither the
+same spatial signal signature nor the same propagation delay.  Under such an
+assumption we can state important corollaries.
+\begin{enumerate}
+\item If $\gls{nRxBeam}\geq\gls{nTaps}$ and   $\gls{nTxBeam}\geq 2\gls{nTaps}$, then
+  $\gls{pLength} \geq 2\gls{sparsity}_3$ pilot symbols are per frame is enough to estimate
+  \gls{nTaps} paths. Thus, the overhead per frame can be reduced at the minimum
+  of $2\gls{sparsity}_3$.
+\item If $\gls{nRxBeam} \geq \gls{nTaps}$ and   $\gls{pLength} \geq \gls{nTaps}$, then
+  $\gls{nTxBeam} \geq 2\gls{sparsity}_2$ transmit beams are sufficient to estimate
+  \gls{nTaps} paths. Because it transmit beams is associated to the number of
+  frames, the total number of training frames is reduced to $2\gls{sparsity}_2$.
+\item If $\gls{nTxBeam} \geq \gls{nTaps}$ and   $\gls{pLength} \geq \gls{nTaps}$, then
+  $\gls{nRxBeam} \geq 2\gls{sparsity}_1$ receive beams are sufficient to estimate
+  \gls{nTaps} paths. This configuration can be useful for scenarios where the
+  receiver has limited number of \gls{RF} chains, so this implies that the
+  system must increase either the number of beams or the pilot sequences.
+\end{enumerate}
+
+
+
+Another implication of \ref{th.:compressed_parafac} asserts that the matrices
 $\gls{spMtx}_1, \gls{spMtx}_2,$ and $\gls{spMtx}_3$ are indentifiable from the
 received signal $\gls{rxOutputTen}$ if $\gls{nRxBeam}>k_{\gls{spMtx}_1}$,
 $\gls{nTxBeam}>k_{\gls{spMtx}_2}$, $\gls{pLength}>k_{\gls{spMtx}_3}$ as if the
@@ -363,6 +435,9 @@ $\gls{orTh}_1$, $\gls{orTh}_2$, and $\gls{orTh}_3$ that returns the sparsest
 factor matrices, the receiver  measures the channel  $\gls{chTen}$ using the fewest
 amount of samples, so the system overhead achieves the its lower-bound. Of
 course, more accurate estimations are possible the more samples are collected.
+
+
+
 
 \subsection{Algorithm Description}
 
@@ -388,6 +463,24 @@ matrix resulting from the Katri-rao product. For instance, the factor matrix of
 similarly, $\hat{\bfB}$ and $\hat{\bfC}$ are calculated. Repeat this procedure
 until the convergence. We summarize the steps of \gls{als} in the Table~\ref{alg.:als}. 
 
+Fitting the \gls{PARAFAC} model to the compressed tensor $\gls{rxOutputTen}$,
+the next step consist of solving three compressive sensing problems to estimate
+$\gls{spMtx}_1$, $\gls{spMtx}_2$, and $\gls{spMtx}_3$. The mathematical
+formulation for the 1-mode is
+\begin{equation}
+  \label{eq:l1_norm_modeOne}
+  \min_{\gls{spVec}_1} \|\hat{\bfa} - \left( \gls{eye} \otimes \gls{rxBeamMtx}^T\gls{orTh}_1\right) \gls{spVec}_1\|_2 + \beta \|\gls{spVec}_1\|_1, 
+\end{equation}
+where $\hat{\bfa} \equiv \textrm{vec}\{\hat{\bfA}\}$ and  $\gls{spVec}_1 \equiv
+\textrm{vec}\{\gls{spMtx}_1\}$. The problem in \eqref{eq:l1_norm_modeOne} is a
+\gls{lasso} problem and can be solved using convex optimization solvers
+\cite{Boyd:2004}. The 2-mode and 3-mode can be formulated similarly as in
+\eqref{eq:l1_norm_modeOne}. The outcome of the three problems gives a sparse \gls{PARAFAC} model with
+the factor matrices $\gls{spMtx}_1$, $\gls{spMtx}_2$, and $\gls{spMtx}_3$ that
+can be mapped to the tensor $\gls{chTen}$ by using the mode product with
+$\gls{orTh}_1$,  $\gls{orTh}_2$, and $\gls{orTh}_3$.
+
+
 \label{sec:algorithm}
 \begin{algorithm}
     \caption{\gls{als} description } \label{alg.:als}
@@ -403,12 +496,12 @@ until the convergence. We summarize the steps of \gls{als} in the Table~\ref{alg
       \STATE $\hat{\gls{rxOutputMtx}}_1 \gets (\hat{\bfB} \odot \hat{\bfC})\hat{\bfA}^T$
       \STATE $ e \gets \|\hat{\gls{rxOutputMtx}}_1 - \gls{rxOutputMtx}_1 \|^2_F/ \|\gls{rxOutputMtx}_1\|_F^2$
       \ENDWHILE
+
+      
     \end{algorithmic}
 \end{algorithm}
 
-
-
-
+\section{Results}
 
 \section{Conclusion}
 The conclusion goes here.
