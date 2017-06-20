@@ -1,3 +1,5 @@
+
+
 \documentclass{standalone}
 
 \usepackage{tikz}
@@ -24,9 +26,8 @@ xlabel={SNR (dB)},
 %every outer y axis line/.append style={black},
 %every y tick label/.append style={font=\color{black}},
 ylabel={ $\|\mathcal{H} - \hat{\mathcal{H}}\|^2_F$},
+% title = Channel frequency response between $\mathbf{H}(2,1)$,
 ymin = 0.00001,
-%title = Channel frequency response between $\mathbf{H}(2,1)$,
-%ymajorgrids,
 grid,
 %axis background/.style={fill=white},
 legend style={at={(0,0)},anchor=south west,legend cell align=left,align=left,draw=black,font=\fontsize{4}{5}\selectfont}
@@ -37,49 +38,38 @@ legend style={at={(0,0)},anchor=south west,legend cell align=left,align=left,dra
 
 \addplot [color=blue,solid,mark=asterisk,mark options={solid},line width=2pt,mark size=3pt]
   table[row sep=crcr]{%
-0 0.068043 \\
-4 0.0053826 \\
-8 0.0010556 \\
-12 0.00025863 \\
-16 0.00011893 \\
-20 4.3264e-05 \\   
+0 0.44937 \\
+4 0.3513 \\
+8 0.25693 \\
+12 0.05133 \\
+16 0.0023251 \\
+20 0.001731 \\
 };
-\addlegendentry{$(Q=6,I=32,N=6)$}; 
-
+\addlegendentry{$(Q=8,I=6,N=6)$}; 
 
 \addplot [color=blue,solid,mark=square,mark options={solid},line width=2pt,mark size=3pt]
   table[row sep=crcr]{%
-0 0.075305 \\
-4 0.012687 \\
-8 0.0038946 \\
-12 0.0011827 \\
-16 0.0004329 \\
-20 9.7412e-05 \\   
+0 0.49713 \\
+4 0.040181 \\
+8 0.025289 \\
+12 0.0015062 \\
+16 0.0008905 \\
+20 0.0003901 \\
 };
-\addlegendentry{$(Q=6,I=20,N=6)$};
-
-\addplot [color=blue,solid,mark=triangle,mark options={solid},line width=2pt,mark size=3pt]
-  table[row sep=crcr]{%
-0 4.2616 \\
-4 2.3019 \\
-8 2.794 \\
-12 0.0095793 \\
-16 0.0068733 \\
-20 0.004409 \\
-};
-\addlegendentry{$(Q=6,I=6,N=6)$};
+\addlegendentry{$(Q=12,I=6,N=6)$}; 
 
 
 \addplot [color=blue,solid,mark=diamond,mark options={solid},line width=2pt,mark size=3pt]
   table[row sep=crcr]{%
-0 17.3537 \\
-4 13.311 \\
-8 20.9924 \\
-12 14.983 \\
-16 11.9309 \\
-20 14.9857 \\
+0 4.5925 \\
+4 4.7258 \\
+8 3.4832 \\
+12 3.7243 \\
+16 6.92 \\
+20 5.5225 \\
 };
-\addlegendentry{$(Q=6,I=2,N=6)$};
+\addlegendentry{$(Q=12,I=50,N=2)$}; 
+
 
 
 
@@ -87,6 +77,7 @@ legend style={at={(0,0)},anchor=south west,legend cell align=left,align=left,dra
 \end{axis}
 \end{tikzpicture}%
 \end{document}
+
 
 %%% Local Variables:
 %%% mode: latex
