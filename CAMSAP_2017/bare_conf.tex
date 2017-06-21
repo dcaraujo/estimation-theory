@@ -192,7 +192,7 @@ phase-shifter network \cite{Heath:2016,Alkhateeb:2014,Alkhateeb:2016a}.
 
 To design the \gls{HB} and hence providing the expected massive \gls{mimo} gains, the transceiver must have partial or complete \gls{csi}
 knowledge. The channel acquisition phase is crucial due to
-the large system overhead because the length of the pilot sequence grows proportionally
+the large system overhead which grows proportionally
 to the number of antennas. Therefore, the development of a
 \gls{csi} estimator that fits to a hybrid massive \gls{mimo} transceiver is
 conditioned to the digital-analog architecture and the length of the pilot sequence
@@ -206,9 +206,18 @@ frequency selective channel. The current paper particularly comprises all the th
 \end{inparaenum}
 and aims at proposing a novel \gls{csi} estimator.
 
-Although there some works to
- which the \gls{HB} and channel estimation are considered such as 
+Although there some works to  which the \gls{HB} and channel estimation are
+considered such as \cite{Venugopal:2017,Heath:2016,Alkhateeb:2014}, but the
+frequency selectivity is not consider.
 
+The proposed solution consists of modeling the frequency selective channel as a
+third-order tensor \cite{Kolda:2009,Sidiropoulos:2000}. Such mathematical
+formalism is the natural extension of vector and matrices for multidimensional
+spaces and enables us to exploit well established models that carrier
+with them conditions to guarantee uniqueness in tensor problems. We explore
+herein a novel approach for estimating the massive \gls{mimo} frequency
+selective channels that relies on the sparse \gls{PARAFAC} analysis. 
+proposed  
 
 
 \textit{Notation}: A scalar is denoted in italic, e.g. $a$. A column vector is a
@@ -518,9 +527,27 @@ of the factor matrices \cite{Tropp:2008}.
 We consider a scenario with  $\gls{nAntTx}=64$ transmitter antennas and
 $\gls{nAntRx}=16$ receiver antennas. Both arrays are linear with half length
 separation. The frame length is $\gls{nTime} = 20$ and the delay tap length is
-assumed to be $\gls{nTaps}=3$ for illustration.
+assumed to be $\gls{nTaps}=3$. 
 
-Fig. \ref{fig:tx_beams}  show the 
+Fig. \ref{fig:tx_beams}  shows the estimation performance for  $\gls{nTxBeam} =
+\{2,6,20,32\}$ number of beams. The algorithms fails in estimating the channel
+for $\gls{nTxBeam}=2$, for the corollary 2 is not satisfied. The number of taps
+$\gls{nTaps}=3$ requires that the number of transmit beams $\gls{nTxBeam} \geq 6
+$, otherwise the uniqueness of the model is not guaranteed. Assuming such
+condition is achieved, the estimation is improved the more transmit beams are
+used at the cost of more overhead.
+
+
+Fig \ref{fig:rx_beams} shows another to improve the channel estimation. Instead
+of increasing the number of transmit beams, it is possible to increase the
+number of receive beams \gls{nRxBeam} that measures that channel within the same
+frame. This will require more \gls{RF} chains to be used at the same time, so there
+is a trade-off among hardware complexity, system overhead, and the accuracy to
+achieve so that system can offer good spectral efficiency (reduced overhead) but
+using  transceivers with reduced number of combiners.
+Nevertheless the increasing of the number of transmit beams can afford to reduce
+the pilot sequence length, it cannot be $\gls{pLength}<6$ as it violates the
+first corollary, and the uniqueness of the \gls{PARAFAC} model does not hold. 
 
 
 \begin{figure}[!thb]
@@ -534,11 +561,20 @@ Fig. \ref{fig:tx_beams}  show the
   \centering
   \includegraphics[width=0.5\textwidth]{fig/snr_nmse_rx}
   \caption{Channel estimation using sparse PARAFAC model. }
-  \label{fig:tx_beams}
+  \label{fig:rx_beams}
 \end{figure}
 
 \section{Conclusion}
-The conclusion goes here.
+In this paper, we investigate the problem of estimating frequency selective
+channels using \gls{HB} to transmit the pilot sequences. The proposed method
+exploits jointly the intrinsic sparsity in the three dimensions \gls{AoA},
+\gls{AoD} and delay. Using the sparse \gls{PARAFAC} model, we ensure minimum
+number of transmit beams,  receive beams, and length of the pilot sequence that
+guarantees the uniqueness of the model. This offers  flexibility to the system
+as it can conveniently control the system overhead  according to the hardware
+limitation and spectral efficiency by choosing the number of beams and pilot
+sequence length. In future works, we intend to extend sparse \gls{PARAFAC} solution for time
+varying channels whose time response changes from frame-to-frame.
 
 \section*{Acknowledgment}
 
