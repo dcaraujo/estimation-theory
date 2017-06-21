@@ -482,7 +482,7 @@ $\gls{orTh}_1$,  $\gls{orTh}_2$, and $\gls{orTh}_3$.
 
 
 \label{sec:algorithm}
-\begin{algorithm}
+\begin{algorithm}   
     \caption{\gls{als} description } \label{alg.:als}
     \begin{algorithmic}
       \STATE Initialize factor matrices $\bfA$, $\bfB$, and $\bfC$.
@@ -502,6 +502,26 @@ $\gls{orTh}_1$,  $\gls{orTh}_2$, and $\gls{orTh}_3$.
 \end{algorithm}
 
 \section{Results}
+
+In this section, the performance of the proposed method is
+evaluated in terms of the \gls{NMSE} which is defined as 
+\begin{equation}
+  \label{eq:nmse}
+  \textrm{NMSE} = \sum^{V}_{v=1} \frac{\|\hat{\gls{chTen}}_v - \gls{chTen} \|^{2}_F}{\|\gls{chTen} \|^{2}_F},
+\end{equation}
+where $v$ are the montecarlo simulations.
+First, we apply \gls{als}, described in
+\ref{alg.:als}, to obtain \gls{PARAFAC} decomposition of the compressed tensor.
+Second, we apply matching pursuit algorithm to obtain the sparse representation
+of the factor matrices \cite{Tropp:2008}.
+
+We consider a scenario with  $\gls{nAntTx}=64$ transmitter antennas and
+$\gls{nAntRx}=16$ receiver antennas. Both arrays are linear with half length
+separation. The frame length is $\gls{nTime} = 20$ and the delay tap length is
+assumed to be $\gls{nTaps}=3$ for illustration.
+
+Fig. \ref{fig:tx_beams}  show the 
+
 
 \begin{figure}[!thb]
   \centering
