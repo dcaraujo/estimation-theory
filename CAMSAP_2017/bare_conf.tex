@@ -134,10 +134,19 @@ Email: andre@gtel.ufc.br}}
 % make the title area
 \maketitle
 
-
 \begin{abstract}
 %\boldmath
-The abstract goes here.
+This paper develops a novel hybrid analog-digital frequency selective channel estimation technique
+assuming multiple antennas at the transmitter and multiple antennas at the
+receiver. We link the estimation problem to the \gls{PARAFAC} analysis by
+modeling the channel as a third order tensor. We leverage on this link to derive
+a solution that jointly estimates the spatio characteristics of the channel and
+the delay pattern of the channel. The proposed method relies on the joint
+sparsity of the \gls{AoA}, \gls{AoD}, thereby  affording the system to use
+reduced  pilot sequences and very few beams. Moreover, we exploit the
+fundamental results of Kruskal for sparse \gls{PARAFAC} models that guarantees
+uniqueness. The simulations results show that the can achieve very accurate
+estimates at the cost of low-overhead by using the proposed method. 
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -167,7 +176,7 @@ The abstract goes here.
 
 Beamforming for 5G mobile communication systems promises to enable a great
 increase in wireless data rate due to the massive number of antennas intended to
-be implemented at the \gls{BS} . Massive \gls{mimo} has the potential to achieving
+be implemented at the \gls{BS}. Massive \gls{mimo} has the potential to provide
 extremely high energy and spectrum efficiency required by the 5G
 networks\cite{Larsson:2014}.
 Such a potential is achieved if the system
@@ -177,7 +186,7 @@ Such a potential is achieved if the system
 \end{inparaenum}
 
 The implementation of complete digital architecture for massive \gls{mimo}
-system is a tremendous challenge. For each antenna element, it has associated a
+system is a tremendous challenge \cite{Alkhateeb:2014}. For each antenna element, it has associated a
 dedicated \gls{RF} chain, which includes power amplifier (\gls{lna} at the
 receiver), \gls{DAC} (\gls{ADC} at the receiver) and so on
 \cite{Venkateswaran:2008,Alkhateeb:2014}; therefore, when the number of antennas
@@ -194,10 +203,10 @@ To design the \gls{HB} and hence providing the expected massive \gls{mimo} gains
 knowledge. The channel acquisition phase is crucial due to
 the large system overhead which grows proportionally
 to the number of antennas. Therefore, the development of a
-\gls{csi} estimator that fits to a hybrid massive \gls{mimo} transceiver is
-conditioned to the digital-analog architecture and the length of the pilot sequence
-\cite{Alkhateeb:2014,Alkhateeb:2016a}. The use of large bandwidth in the next
-generation of wireless systems creates an additional challenge which  is the
+\gls{csi} estimator that fits to a hybrid massive \gls{mimo} transceiver must
+take into account the digital-analog architecture and provide reliable estimates
+with short pilot sequences \cite{Alkhateeb:2014,Alkhateeb:2016a}. The use of large bandwidth in the next
+generation of wireless systems poses an additional challenge to problem which is the
 frequency selective channel. The current paper particularly comprises all the three aspects
 \begin{inparaenum}[(i)]
 \item \gls{HB} architecture,
@@ -206,9 +215,16 @@ frequency selective channel. The current paper particularly comprises all the th
 \end{inparaenum}
 and aims at proposing a novel \gls{csi} estimator.
 
-Although there some works to  which the \gls{HB} and channel estimation are
-considered such as \cite{Venugopal:2017,Heath:2016,Alkhateeb:2014}, but the
-frequency selectivity is not consider.
+Although there are some works to which the \gls{HB} and channel estimation are considered such as
+\cite{Heath:2016,Alkhateeb:2014}, they do not cover the frequency selectivity
+case. Recently, the work \cite{Venugopal:2017} presents a solution that deals
+with this type of channel, and it consist of stacking the received signal of
+multiple frames each one associated to a given transmit beam. Using \gls{cs}
+framework, the receiver is capable of extracting the \gls{AoD} and the path gain
+associated to each path. Nevertheless, the technique provides very accurate
+estimates as shown in \cite{Venugopal:2017},  the extension for 
+multiple antennas at the receive becomes prohibitive because the dimension of the
+stacked received signal is very large which leads to high computational complexity.
 
 The proposed solution consists of modeling the frequency selective channel as a
 third-order tensor \cite{Kolda:2009,Sidiropoulos:2000}. Such mathematical
@@ -216,8 +232,16 @@ formalism is the natural extension of vector and matrices for multidimensional
 spaces and enables us to exploit well established models that carrier
 with them conditions to guarantee uniqueness in tensor problems. We explore
 herein a novel approach for estimating the massive \gls{mimo} frequency
-selective channels that relies on the sparse \gls{PARAFAC} analysis. 
-proposed  
+selective channels that relies on the sparse \gls{PARAFAC} analysis. Our work
+link the sparse channel estimation problem to sparse \gls{PARAFAC} proposed in
+\cite{Sidiropoulos:2012}. Such a model relies on the fundamental result of
+Kruskal \cite{Sidiropoulos:2000} and its further extension to sparse tensor in
+\cite{Sidiropoulos:2012}. Using the Kruskal conditions for sparse \gls{PARAFAC}
+model, we guarantee its uniqueness and retrieve the factor matrices
+\cite{Kolda:2009} that
+describes the compressed space and time domains within a given transmission
+frame. Then, such matrices are the input for three \gls{cs} problems that
+extract  the sparse decomposition of the factor matrices.
 
 
 \textit{Notation}: A scalar is denoted in italic, e.g. $a$. A column vector is a
@@ -257,14 +281,17 @@ the circularly symmetric complex Gaussian distributed noise vector, therefore, t
   \label{eq:rx_signal}
   \gls{rxVec}_{\gls{txBeamIdx},\gls{timeIdx}} = \sqrt{\rho} \sum_{\gls{tapIdx}=0}^{\gls{nTaps}-1} \gls{chMtx}_{\gls{tapIdx}} \gls{txBeamVec}_{\gls{txBeamIdx}}s_{\gls{timeIdx}-\gls{tapIdx}} + \gls{noiseVec}_{\gls{txBeamIdx},\gls{timeIdx}},
 \end{equation}
-where \gls{txBeamIdx} is the beam index associated to transmit a given frame, t
-$\gls{pSym}_{\gls{timeIdx}}$ is the \gls{timeIdx}th non-zero instance of the
+where \gls{txBeamIdx} is the beam index associated to transmit a given frame, $\gls{pSym}_{\gls{timeIdx}}$ is the \gls{timeIdx}th non-zero instance of the
 training frame 
 \begin{equation}
   \label{eq:frame}
-  \gls{pSymVec} = [0, \ldots, 0,  \gls{pSym}_1, \gls{pSym}_2, \ldots, \gls{pSym}_{\gls{nTime}} ]
+  \gls{pSymVec} = [0, \ldots, 0,  \gls{pSym}_1, \gls{pSym}_2, \ldots, \gls{pSym}_{\gls{pLength}} ]
 \end{equation}
-of length $\gls{nTime}+\gls{nTaps}-1$.
+of length $\gls{nTime}=\gls{pLength}+\gls{nTaps}-1$. Each transmit frame is associated to a
+specific beam pattern, i.e. assuming a codebook with \gls{nTxBeam} beam
+patterns, the system needs to \gls{nTxBeam} training frames to use beams
+specified by the codebook. Each frame carriers a pilot sequence with
+$\gls{pLength}$ symbols.
 
 The receiver applies the combiner $\gls{rxBeamVec}_{\gls{rxBeamIdx}}$  over the
 training frame, so that the combiner output is expressed as
@@ -274,7 +301,7 @@ training frame, so that the combiner output is expressed as
    \gls{rxOutput}_{\gls{rxBeamIdx},\gls{txBeamIdx},\gls{timeIdx}} = \sqrt{\rho}\gls{rxBeamVec}^T_{\gls{rxBeamIdx}} \sum_{d=0}^{N_c-1} \gls{chMtx}_{\gls{tapIdx}}\gls{txBeamVec}_{\gls{txBeamIdx}}s_{\gls{timeIdx}-\gls{tapIdx}} + \gls{noise}_{\gls{rxBeamIdx},\gls{txBeamIdx},\gls{timeIdx}},
  \end{equation}
  where $\gls{noise}_{\gls{rxBeamIdx},\gls{txBeamIdx},\gls{timeIdx}} = \gls{rxBeamVec}^H_{\gls{rxBeamIdx}}\gls{noiseVec}_{\gls{txBeamIdx},\gls{timeIdx}}$
-The output signal can described in term of tensor notation
+The output signal can be described in term of tensor notation \cite{Kolda:2009,Sidiropoulos:2000}
 \begin{equation}
   \label{eq:output_combiner_tensor}
   \gls{rxOutput}_{\gls{rxBeamIdx},\gls{txBeamIdx},\gls{timeIdx}} =  \gls{chTen} \times_1 \gls{rxBeamVec}_{\gls{rxBeamIdx}} \times_2 \gls{txBeamVec}_{\gls{txBeamIdx}} \times_3 \gls{pSymVec}_{\gls{timeIdx}},
@@ -286,17 +313,17 @@ instants within the training frame, we can express the signal model as the
 third-order tensor \cite{Sidiropoulos:2000,Cichocki:2009}
 \begin{equation}
   \label{eq:tensor_model}
-  \gls{rxOutputTen} =   \gls{chTen}\times_1  \gls{rxBeamMtx}^T \times_2  \gls{txBeamMtx}^T \times_3 \gls{pSymMtx} + \gls{noiseTen} \times_1 \gls{rxBeamMtx}^T  ,
+  \gls{rxOutputTen} =   \gls{chTen}\times_1  \gls{rxBeamMtx}^T \times_2  \gls{txBeamMtx}^T \times_3 \gls{pSymMtx}^T + \gls{noiseTen} \times_1 \gls{rxBeamMtx}^T  ,
 \end{equation}
 where \gls{pSymMtx} is toeplitz because there is a convolution operation over the third dimension.
 
 There are two basic multiway models largely used in the literature: Tucker3 and
-\gls{PARAFAC}. The first is not identifiable in general, but it is very useful for data compression
-as shown in \cite{Duarte:2012}. The second is identifiable  under specific
-conditions which respect the \textit{Kruskal-rank} condition
-\cite{Sidiropoulos:2000,Smilde:2004}. We briefly review the \gls{PARAFAC} model
-since its properties are useful to develop our estimator identifiability
-condition.
+\gls{PARAFAC}. The first  is very useful for data compression
+as shown in \cite{Duarte:2012}, but its uniqueness conditions cannot be
+addressed in general. The second is identifiable  under specific
+conditions with respect of the \textit{Kruskal-rank} condition
+\cite{Sidiropoulos:2000,Smilde:2004}. %In the next section, we establish  the
+%link between the \gls{PARAFAC} model and the sparse channel estimation problem.
 
 
 \section{Channel Estimation via Multiway Compressive Sensing}
@@ -304,7 +331,7 @@ condition.
 
 In this section, we propose a channel estimator method that leverages on the
 \gls{PARAFAC} uniqueness properties and the joint sparse of the transmitter-receiver
-angular domain and delay domain. 
+angular and delay domains. 
 
 
 \subsection{Sparse \gls{PARAFAC} Formulation}
@@ -318,7 +345,7 @@ Consider a geometric  channel model for a frequency selective channel
 \end{align}
 where $\gls{pulse}(\gls{delay})$
 denotes the system pulse shaping evaluated at
-$\gls{delay}$,$\gls{cplxGain}_{\gls{tapIdx}}$ $\in$ $\mathbb{C}$ is the complex
+$\gls{delay}$, $\gls{cplxGain}_{\gls{tapIdx}}$ $\in$ $\mathbb{C}$ is the complex
 gain associated to the $\gls{tapIdx}$th path, $\gls{delay}_{\gls{tapIdx}}$ $\in$
 $\mathbb{R}$ is the delay of the \gls{tapIdx}th path, \gls{azm} $\in$ $[0,2\pi)$
 and \gls{elev} $\in$ $[\pi/2, \pi)$ are the azimuth and elevation (AoA/AoD),
@@ -343,7 +370,7 @@ written as
   \gls{chTen} = \gls{eyeTen} \times _1 \gls{rxStrMtx} \times_2  \gls{txStrMtx}^{*} \times_3 \gls{delayMtx}.
 \end{equation}
 Substituting \eqref{eq:mode_product_parafac} into  \eqref{eq:tensor_model}, the
-received signal can be represented as \gls{PARAFAC} model up to a model error
+received signal fits into a \gls{PARAFAC} model up to an error
 accounted in $\gls{errorTen} = \gls{noiseTen} \times \gls{rxBeamMtx}^H$
 \begin{equation}
   \label{eq:parafac_rx_signal}
@@ -353,7 +380,7 @@ Comparing \eqref{eq:mode_product_parafac} and \eqref{eq:parafac_rx_signal},
 the matrices  $\gls{rxBeamMtx}^T$,  $\gls{txBeamMtx}^T$, and $\gls{pSymMtx}^T$
 compress 1-mode, 2-mode, and 3-mode, respectively. Therefore, the received
 tensor signal is the compressed version of the channel. Assuming that the tensor channel
-$\gls{chTen}$ admits a sparse representation, the receive signal can again be
+$\gls{chTen}$ admits a sparse representation, the received signal can again be
 rewritten as
 \begin{equation}
   \label{eq:sparse_parafac_rx_signal}
@@ -368,8 +395,7 @@ $\mathbb{C}^{\gls{nTimeSamples}\times \gls{nTaps}}$ are sparse matrices
 associated to each tensor mode. Given that $\gls{spMtx}_1$, $\gls{spMtx}_2$ and
 $\gls{spMtx}_3$ are sparse, consider that $\gls{sparsity}_1$ $(\gls{sparsity}_2,\gls{sparsity}_3)$ is an
 upper bound on the number of non-zero elements per column of $\gls{spMtx}_1$
-(respectively $\gls{spMtx}_2,\gls{spMtx}_3$).
-
+(respectively $\gls{spMtx}_2,\gls{spMtx}_3$). 
 
 
 To recover the \gls{csi}, both the channel and
@@ -400,7 +426,7 @@ condition of the received tensor signal is given by \cite{Sidiropoulos:2012}
 
 Exploiting the Theorem \ref{th.:compressed_parafac}, the system can properly
 choose the number of receiver beams, transmit beams, pilot symbols that
-guarantee uniqueness of the model. Assume that the matrices $r_{\gls{spMtx}_1}=k_{\gls{spMtx}_1}$,
+guarantee uniqueness of the model. Assume that sparse matrices meet the condition $r_{\gls{spMtx}_1}=k_{\gls{spMtx}_1}$,
 $r_{\gls{spMtx}_2}=k_{\gls{spMtx}_2}$, and
 $r_{\gls{spMtx}_3}=k_{\gls{spMtx}_3}$, i.e. the factor matrices can not have a
 column that is a scaled version of another one. This means that the two
@@ -425,7 +451,7 @@ assumption we can state important corollaries.
 
 
 
-Another implication of \ref{th.:compressed_parafac} asserts that the matrices
+Another implication of the Theorem \ref{th.:compressed_parafac} asserts that the matrices
 $\gls{spMtx}_1, \gls{spMtx}_2,$ and $\gls{spMtx}_3$ are indentifiable from the
 received signal $\gls{rxOutputTen}$ if $\gls{nRxBeam}>k_{\gls{spMtx}_1}$,
 $\gls{nTxBeam}>k_{\gls{spMtx}_2}$, $\gls{pLength}>k_{\gls{spMtx}_3}$ as if the
@@ -435,15 +461,18 @@ estimate the sparse vector formed by $\gls{nTaps} \gls{sparsity}_1
 \gls{sparsity}_2 \gls{sparsity}_3$ non-zero elements, then
 $\gls{nRxBeam}\gls{nTxBeam}\gls{pLength} \geq 2 \gls{nTaps}\gls{sparsity}_1\gls{sparsity}_2\gls{sparsity}_3$
 must hold. Assuming
-$\gls{sparsity}_2=\gls{sparsity}_2=\gls{sparsity}_3=\gls{sparsity}$, the vector
+$\gls{sparsity}_1=\gls{sparsity}_2=\gls{sparsity}_3=\gls{sparsity}$, the vector
 problem formulation needs $2\gls{nTaps}\gls{sparsity}^3$ measurements while the
 problem exploiting the \gls{PARAFAC} framework needs $8\gls{sparsity}^3$.
 Therefore, the number of measurements does not depend on the number of paths,
-but only the sparsity on the factor matrices. In principle, if we know
-$\gls{orTh}_1$, $\gls{orTh}_2$, and $\gls{orTh}_3$ that returns the sparsest
+but only the sparsity on the factor matrices. In principle, if we know that
+$\gls{orTh}_1$, $\gls{orTh}_2$, and $\gls{orTh}_3$ returns the sparsest
 factor matrices, the receiver  measures the channel  $\gls{chTen}$ using the fewest
 amount of samples, so the system overhead achieves the its lower-bound. Of
-course, more accurate estimations are possible the more samples are collected.
+course, more accurate estimations are possible the more samples are collected as
+we show in the results.
+
+
 
 
 
@@ -451,7 +480,7 @@ course, more accurate estimations are possible the more samples are collected.
 \subsection{Algorithm Description}
 
 We exploit the principle of \gls{als} to fit the compressed \gls{PARAFAC} model
-obtained from noisy observations. After this, we compute separately the minimum $l_1$ norm
+obtained from noisy observations. After this, we compute separately the minimum $l_1$-norm
 solution for each factor matrix.
 
 The idea behind the \gls{als} consist of updating a subset of \gls{PARAFAC} parameters
@@ -487,7 +516,28 @@ where $\hat{\bfa} \equiv \textrm{vec}\{\hat{\bfA}\}$ and  $\gls{spVec}_1 \equiv
 \eqref{eq:l1_norm_modeOne}. The outcome of the three problems gives a sparse \gls{PARAFAC} model with
 the factor matrices $\gls{spMtx}_1$, $\gls{spMtx}_2$, and $\gls{spMtx}_3$ that
 can be mapped to the tensor $\gls{chTen}$ by using the mode product with
-$\gls{orTh}_1$,  $\gls{orTh}_2$, and $\gls{orTh}_3$.
+$\gls{orTh}_1$,  $\gls{orTh}_2$, and $\gls{orTh}_3$, i.e.
+\begin{equation}
+  \label{eq:sparse_mapping}
+ \hat{\gls{chTen}}  =   \gls{eyeTen} \times_1  \gls{orTh}_1\gls{spMtx}_1 \times_2  \gls{orTh}_2\gls{spMtx}_2 \times_3 \gls{orTh}_3\gls{spMtx}_3.
+\end{equation}
+
+The matrices \gls{rxBeamMtx},
+\gls{txBeamMtx}, and \gls{pSymMtx} are the measurement matrices, i.e. each one
+performs measurements of the channel \gls{chTen} associated to their own modes.
+The optimum design is desired so that the estimator can achieve best
+performance, however, it is not investigated in this paper. For the ease of
+explanation, the training frame transmission uses $\gls{rxBeamMtx} =
+\gls{rxBeamMtx}_{\gls{RF}}$ and $\gls{txBeamMtx} = \gls{txBeamMtx}_{\gls{RF}}$,
+and they are obtained from an Bernoulli distribution which meets the constant
+modulus restriction of the analog beamforming. Nevertheless such a distribution
+is convenient, it is known from the
+literature that that the Gaussian complex distribution provides the best
+performance in sparse problem frameworks, as discussed in  \cite{Donoho:2006}.
+It still possible to use such a distribution even with \gls{HB}, but the analog
+and digital beamforms must be designed such that the resulting matrices
+\gls{rxBeamMtx} and \gls{txBeamMtx} are matrices whose elements follow a
+Gaussian complex distribution. 
 
 
 \label{sec:algorithm}
@@ -520,7 +570,7 @@ evaluated in terms of the \gls{NMSE} which is defined as
 \end{equation}
 where $v$ are the montecarlo simulations.
 First, we apply \gls{als}, described in
-\ref{alg.:als}, to obtain \gls{PARAFAC} decomposition of the compressed tensor.
+\ref{alg.:als}, to obtain \gls{PARAFAC} decomposition of the compressed tensor \gls{rxOutputTen}.
 Second, we apply matching pursuit algorithm to obtain the sparse representation
 of the factor matrices \cite{Tropp:2008}.
 
@@ -534,30 +584,29 @@ Fig. \ref{fig:tx_beams}  shows the estimation performance for  $\gls{nTxBeam} =
 for $\gls{nTxBeam}=2$, for the corollary 2 is not satisfied. The number of taps
 $\gls{nTaps}=3$ requires that the number of transmit beams $\gls{nTxBeam} \geq 6
 $, otherwise the uniqueness of the model is not guaranteed. Assuming such
-condition is achieved, the estimation is improved the more transmit beams are
-used at the cost of more overhead.
+condition is achieved, the estimation improves the more transmit beams are
+used which leads to use of more training frames. Thus, the performance
+improvement comes at the cost of more overhead as expected.
 
 
-Fig \ref{fig:rx_beams} shows another to improve the channel estimation. Instead
-of increasing the number of transmit beams, it is possible to increase the
-number of receive beams \gls{nRxBeam} that measures that channel within the same
-frame. This will require more \gls{RF} chains to be used at the same time, so there
-is a trade-off among hardware complexity, system overhead, and the accuracy to
-achieve so that system can offer good spectral efficiency (reduced overhead) but
-using  transceivers with reduced number of combiners.
-Nevertheless the increasing of the number of transmit beams can afford to reduce
-the pilot sequence length, it cannot be $\gls{pLength}<6$ as it violates the
-first corollary, and the uniqueness of the \gls{PARAFAC} model does not hold. 
+Fig \ref{fig:rx_beams} shows another approach to improve the channel estimation. Instead
+of increasing the number of transmit beams, it is possible to use more receive
+receive beams \gls{nRxBeam} that measures that channel within the frame period. This will require more \gls{RF} chains to be used at the same time, so there
+is a trade-off among hardware complexity, system overhead, and accuracy so that
+system can offer good spectral efficiency (reduced overhead) but using
+transceivers with reduced number of combiners. Nevertheless the increasing of
+the number of transmit beams can afford to reduce the pilot sequence length, it cannot be $\gls{pLength}<6$ as it violates the
+first corollary; therefore, the uniqueness of the \gls{PARAFAC} model does not hold. 
 
 
-\begin{figure}[!thb]
+\begin{figure}[!t]
   \centering
   \includegraphics[width=0.5\textwidth]{fig/snr_nmse}
   \caption{Channel estimation using sparse PARAFAC model. }
   \label{fig:tx_beams}
 \end{figure}
 
-\begin{figure}[!thb]
+\begin{figure}[!t]
   \centering
   \includegraphics[width=0.5\textwidth]{fig/snr_nmse_rx}
   \caption{Channel estimation using sparse PARAFAC model. }
@@ -566,17 +615,16 @@ first corollary, and the uniqueness of the \gls{PARAFAC} model does not hold.
 
 \section{Conclusion}
 In this paper, we investigate the problem of estimating frequency selective
-channels using \gls{HB} to transmit the pilot sequences. The proposed method
-exploits jointly the intrinsic sparsity in the three dimensions \gls{AoA},
-\gls{AoD} and delay. Using the sparse \gls{PARAFAC} model, we ensure minimum
+channels under the assumption that transmitter and receiver have a hybrid
+architecture. The proposed solution exploits jointly the intrinsic sparsity of a
+three dimensional channel. Using the sparse \gls{PARAFAC} model, we provide the minimum
 number of transmit beams,  receive beams, and length of the pilot sequence that
 guarantees the uniqueness of the model. This offers  flexibility to the system
-as it can conveniently control the system overhead  according to the hardware
-limitation and spectral efficiency by choosing the number of beams and pilot
+as it can conveniently control the system overhead according to the number of \gls{RF} chains and spectral efficiency by choosing the number of beams and pilot
 sequence length. In future works, we intend to extend sparse \gls{PARAFAC} solution for time
 varying channels whose time response changes from frame-to-frame.
 
-\section*{Acknowledgment}
+%\section*{Acknowledgment}
 
 \bibliographystyle{IEEEtran}
 \bibliography{latex-aux/reference}
