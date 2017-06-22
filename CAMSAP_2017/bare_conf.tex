@@ -140,13 +140,14 @@ This paper develops a novel hybrid analog-digital frequency selective channel es
 assuming multiple antennas at the transmitter and multiple antennas at the
 receiver. We link the estimation problem to the \gls{PARAFAC} analysis by
 modeling the channel as a third order tensor. We leverage on this link to derive
-a solution that jointly estimates the spatio characteristics of the channel and
+a solution that jointly estimates the spatio characteristics and
 the delay pattern of the channel. The proposed method relies on the joint
-sparsity of the \gls{AoA}, \gls{AoD}, thereby  affording the system to use
-reduced  pilot sequences and very few beams. Moreover, we exploit the
+sparsity of the spatial and delay domains, thereby affording the system to use
+short  pilot sequences and very few beams to accurate estimate channel. Moreover, we exploit the
 fundamental results of Kruskal for sparse \gls{PARAFAC} models that guarantees
-uniqueness. The simulations results show that the can achieve very accurate
-estimates at the cost of low-overhead by using the proposed method. 
+uniqueness to assign the minimum number of beams and pilot sequence length. The
+simulation results show that the proposed solution can achieve very accurate
+estimates if the system meets Kruskal conditions. 
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -499,7 +500,8 @@ and recover $\bfA$, $\bfB$, and $\bfC$ by calculating the pseudoinverse of the
 matrix resulting from the Katri-rao product. For instance, the factor matrix of
 1-mode is $\hat{\bfA}^T = (\bfB \odot \bfC)^{\dagger}\gls{rxOutputMtx}_1 $;
 similarly, $\hat{\bfB}$ and $\hat{\bfC}$ are calculated. Repeat this procedure
-until the convergence. We summarize the steps of \gls{als} in the Table~\ref{alg.:als}. 
+until the error $e = \|\hat{\gls{rxOutputMtx}}_1 - \gls{rxOutputMtx}_1 \|^2_F/
+\|\gls{rxOutputMtx}_1\|_F^2 < \sigma ^2$; this criterion asserts the algorithm convergence. We summarize the steps of \gls{als} in the Table~\ref{alg.:als}. 
 
 Fitting the \gls{PARAFAC} model to the compressed tensor $\gls{rxOutputTen}$,
 the next step consist of solving three compressive sensing problems to estimate
@@ -525,18 +527,19 @@ $\gls{orTh}_1$,  $\gls{orTh}_2$, and $\gls{orTh}_3$, i.e.
 The matrices \gls{rxBeamMtx},
 \gls{txBeamMtx}, and \gls{pSymMtx} are the measurement matrices, i.e. each one
 performs measurements of the channel \gls{chTen} associated to their own modes.
-The optimum design is desired so that the estimator can achieve best
-performance, however, it is not investigated in this paper. For the ease of
-explanation, the training frame transmission uses $\gls{rxBeamMtx} =
-\gls{rxBeamMtx}_{\gls{RF}}$ and $\gls{txBeamMtx} = \gls{txBeamMtx}_{\gls{RF}}$,
-and they are obtained from an Bernoulli distribution which meets the constant
+The optimum design is desired so the maximum channel compression is achieved,
+however, such a problem  is not investigated in this paper. For the ease of
+explanation, the receiver uses $\gls{rxBeamMtx} =
+\gls{rxBeamMtx}_{\gls{RF}}$,  and the transmitter employs $\gls{txBeamMtx} =
+\gls{txBeamMtx}_{\gls{RF}}$. They are obtained from a Bernoulli distribution which meets the constant
 modulus restriction of the analog beamforming. Nevertheless such a distribution
 is convenient, it is known from the
-literature that that the Gaussian complex distribution provides the best
+literature that the Gaussian complex distribution provides the best
 performance in sparse problem frameworks, as discussed in  \cite{Donoho:2006}.
-It still possible to use such a distribution even with \gls{HB}, but the analog
-and digital beamforms must be designed such that the resulting matrices
-\gls{rxBeamMtx} and \gls{txBeamMtx} are matrices whose elements follow a
+Although the use of such a distribution does not lead to a typical analog beamforming
+matrix, it is possible to use this set of matrices if the analog
+and digital beamformers are designed such that the resulting matrices
+\gls{rxBeamMtx} and \gls{txBeamMtx} have entries that follow 
 Gaussian complex distribution. 
 
 
@@ -614,7 +617,7 @@ first corollary; therefore, the uniqueness of the \gls{PARAFAC} model does not h
 \end{figure}
 
 \section{Conclusion}
-In this paper, we investigate the problem of estimating frequency selective
+In this paper, we investigated the problem of estimating frequency selective
 channels under the assumption that transmitter and receiver have a hybrid
 architecture. The proposed solution exploits jointly the intrinsic sparsity of a
 three dimensional channel. Using the sparse \gls{PARAFAC} model, we provide the minimum
