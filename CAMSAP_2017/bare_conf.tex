@@ -186,9 +186,9 @@ Such a potential is achieved if the system
 \item has \gls{csi} available \cite{Gao:2016a}.
 \end{inparaenum}
 
-The implementation of complete digital architecture for massive \gls{mimo}
-system is a tremendous challenge \cite{Alkhateeb:2014}. For each antenna element, it has associated a
-dedicated \gls{RF} chain, which includes power amplifier (\gls{lna} at the
+The implementation of a complete digital architecture for massive \gls{mimo}
+systems is a tremendous challenge \cite{Alkhateeb:2014}. For each antenna element, it has associated a
+dedicated \gls{RF} chain, which includes power amplifier (low-noise amplifier at the
 receiver), \gls{DAC} (\gls{ADC} at the receiver) and so on
 \cite{Venkateswaran:2008,Alkhateeb:2014}; therefore, when the number of antennas
 increases the power consumption from high resolution \gls{ADC} and \gls{DAC}
@@ -200,32 +200,38 @@ a digital part which performs the baseband processing using microprocessors
 whereas, the analog part is implemented at the \gls{RF} frequency by using a
 phase-shifter network \cite{Heath:2016,Alkhateeb:2014,Alkhateeb:2016a}.
 
-To design the \gls{HB} and hence providing the expected massive \gls{mimo} gains, the transceiver must have partial or complete \gls{csi}
-knowledge. The channel acquisition phase is crucial due to
-the large system overhead which grows proportionally
-to the number of antennas. Therefore, the development of a
-\gls{csi} estimator that fits to a hybrid massive \gls{mimo} transceiver must
-take into account the digital-analog architecture and provide reliable estimates
-with short pilot sequences \cite{Alkhateeb:2014,Alkhateeb:2016a}. The use of large bandwidth in the next
-generation of wireless systems poses an additional challenge to problem which is the
-frequency selective channel. The current paper particularly comprises all the three aspects
-\begin{inparaenum}[(i)]
-\item \gls{HB} architecture,
-\item pilot overhead, and
-\item frequency selective channel
-\end{inparaenum}
-and aims at proposing a novel \gls{csi} estimator.
+To design the \gls{HB} and provide the expected massive \gls{mimo} gains, the
+transceiver must have partial or complete \gls{csi} knowledge. The channel
+acquisition phase is crucial due to the large system overhead which grows proportionally
+to the number of antennas. Therefore, the development of a \gls{csi} estimator
+that fits to a hybrid massive \gls{mimo} transceiver must take into account the
+digital-analog architecture and provide reliable estimates with short pilot
+sequences \cite{Alkhateeb:2014,Alkhateeb:2016a}. The use of large bandwidth in
+the next generation of wireless systems poses an additional challenge to problem, since the channel is frequency selective.
+%which is the
+% frequency selective channel. The current paper particularly comprises all the three aspects
+% \begin{inparaenum}[(i)]
+% \item \gls{HB} architecture,
+% \item pilot overhead, and
+% \item frequency selective channel
+% \end{inparaenum}
+% and aims at proposing a novel \gls{csi} estimator.
 
-Although there are some works to which the \gls{HB} and channel estimation are considered such as
-\cite{Heath:2016,Alkhateeb:2014}, they do not cover the frequency selectivity
-case. Recently, the work \cite{Venugopal:2017} presents a solution that deals
-with this type of channel, and it consist of stacking the received signal of
-multiple frames each one associated to a given transmit beam. Using \gls{cs}
+% Although there are some works to which the \gls{HB} and channel estimation are considered such as
+% \cite{Heath:2016,Alkhateeb:2014}, they do not cover the frequency selectivity
+% case.
+
+The works \cite{Heath:2016,Alkhateeb:2014} discuss the problem of channel
+estimation for \gls{HB} architectures, and solutions based on \gls{cs} are
+proposed. Recently, \cite{Venugopal:2017} presents a solution that deals
+with frequency selective channels. The idea consists of stacking the received signal of
+multiple frames each one associated to a given transmit beam. Using the \gls{cs}
 framework, the receiver is capable of extracting the \gls{AoD} and the path gain
-associated to each path. Nevertheless, the technique provides very accurate
+associated to each path. Although this technique provides very accurate
 estimates as shown in \cite{Venugopal:2017},  the extension for 
-multiple antennas at the receive becomes prohibitive because the dimension of the
-stacked received signal is very large which leads to high computational complexity.
+multiple antennas at the receiver becomes prohibitive since the dimension of the
+stacked received signal vector is very large which leads to high computational
+complexity of the sparse recovery algorithm.
 
 The proposed solution consists of modeling the frequency selective channel as a
 third-order tensor \cite{Kolda:2009,Sidiropoulos:2000}. Such mathematical
@@ -233,16 +239,20 @@ formalism is the natural extension of vector and matrices for multidimensional
 spaces and enables us to exploit well established models that carrier
 with them conditions to guarantee uniqueness in tensor problems. We explore
 herein a novel approach for estimating the massive \gls{mimo} frequency
-selective channels that relies on the sparse \gls{PARAFAC} analysis. Our work
-link the sparse channel estimation problem to sparse \gls{PARAFAC} proposed in
-\cite{Sidiropoulos:2012}. Such a model relies on the fundamental result of
-Kruskal \cite{Sidiropoulos:2000} and its further extension to sparse tensor in
-\cite{Sidiropoulos:2012}. Using the Kruskal conditions for sparse \gls{PARAFAC}
-model, we guarantee its uniqueness and retrieve the factor matrices
-\cite{Kolda:2009} that
-describes the compressed space and time domains within a given transmission
-frame. Then, such matrices are the input for three \gls{cs} problems that
-extract  the sparse decomposition of the factor matrices.
+selective channels that relies on the tensor compressive sensing problem, originally presented in \cite{Sidiropoulos:2012}. More specifically, this paper establishes a link between the fundamental Kruskal's uniqueness results for compressive \gls{PARAFAC} analysis to the compressive estimation of frequency-selective mmWave \gls{mimo} channels.% These uniqueness results 
+
+
+
+%the sparse \gls{PARAFAC} analysis. Our work
+% link the sparse channel estimation problem to sparse \gls{PARAFAC} proposed in
+% \cite{Sidiropoulos:2012}. Such a model relies on the fundamental result of
+% Kruskal \cite{Sidiropoulos:2000} and its further extension to sparse tensor in
+% \cite{Sidiropoulos:2012}. Using the Kruskal conditions for sparse \gls{PARAFAC}
+% model, we guarantee its uniqueness and retrieve the factor matrices
+% \cite{Kolda:2009} that
+% describes the compressed space and time domains within a given transmission
+% frame. Then, such matrices are the input for three \gls{cs} problems that
+% extract  the sparse decomposition of the factor matrices.
 
 
 \textit{Notation}: A scalar is denoted in italic, e.g. $a$. A column vector is a
@@ -263,9 +273,9 @@ receiver employ a hybrid beamforming structure using  \gls{nRFTx} and
 and receiver are $\gls{txBeamMtx}=\gls{txAnalogMtx}\gls{txDigitalMtx}$ $\in$
 $\mathbb{C}^{\gls{nAntTx} \times \gls{nTxBeam}}$ and
 $\gls{rxBeamMtx}=\gls{rxAnalogMtx}\gls{rxDigitalMtx}$ $\mathbb{C}^{\gls{nAntRx}
-  \times \gls{nRxBeam}}$, respectively,  where $\gls{nTxBeam} \leq
+  \times \gls{nRxBeam}}$, where $\gls{nTxBeam} \leq
 \gls{nRFTx}$ and $\gls{nRxBeam} \leq
-\gls{nRFRx}$  denotes the number of beams used in the same
+\gls{nRFRx}$  denote the number of beams used in the same
 communication resource at the transmitter and receiver, respectively. The transmitter uses multiple beams to send a single pilot sequence with length \gls{pLength}
 into \gls{nTxBeam} directions, and the receiver uses the multiple \gls{RF}
 chains to collect the incoming training signal from different directions. The
