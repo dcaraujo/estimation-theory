@@ -354,7 +354,7 @@ third-order tensor \cite{Sidiropoulos:2000,Cichocki:2009}
 There are two basic multiway models largely used in the literature: Tucker3 and
 \gls{PARAFAC}. The first  is essential for data compression
 as shown in \cite{Duarte:2012}, but its uniqueness cannot be
-ensured in general. The second is identifiable  under conditions related with
+ensured in general. The second is identifiable  under mild conditions related with
 the concept of the \textit{Kruskal-rank} \cite{Sidiropoulos:2000,Smilde:2004}. %In the next section, we establish  the
 %link between the \gls{PARAFAC} model and the sparse channel estimation problem.
 
@@ -606,8 +606,9 @@ evaluated in terms of the \gls{NMSE} which is defined as
 where $v$ are the montecarlo simulations.
 First, we apply \gls{als}, described in
 \ref{alg.:als}, to obtain \gls{PARAFAC} decomposition of the compressed tensor \gls{rxOutputTen}.
-Second, we apply matching pursuit algorithm to obtain the sparse representation
-of the factor matrices \cite{Tropp:2008}.
+Second, we apply matching pursuit algorithm (e.g. \cite{Tropp:2008}) to solve for the sparse recovery of each factor matrix, from each the channel parameters can be extracted.
+% to obtain the sparse representation
+% of the factor matrices .
 
 We consider a scenario with  $\gls{nAntTx}=64$ transmitter antennas and
 $\gls{nAntRx}=16$ receiver antennas. Both arrays are linear with half length
@@ -637,14 +638,16 @@ first corollary; therefore, the uniqueness of the \gls{PARAFAC} model does not h
 \begin{figure}[!t]
   \centering
   \includegraphics[width=0.48\textwidth]{fig/snr_nmse}
-  \caption{Channel estimation using sparse PARAFAC model. }
+  \caption{The plots show the tensor-based algorithm performance when we vary the
+    number of transmit beams. }
   \label{fig:tx_beams}
 \end{figure}
 
 \begin{figure}[!t]
   \centering
   \includegraphics[width=0.48\textwidth]{fig/snr_nmse_rx}
-  \caption{Channel estimation using sparse PARAFAC model. }
+  \caption{The plots show the tensor-based algorithm performance when we vary the
+    number of receive beams.  }
   \label{fig:rx_beams}
 \end{figure}
 
@@ -652,12 +655,13 @@ first corollary; therefore, the uniqueness of the \gls{PARAFAC} model does not h
 In this paper, we investigated the problem of estimating frequency selective
 channels under the assumption that transmitter and receiver have a hybrid
 architecture. The proposed solution exploits jointly the intrinsic sparsity of a
-three dimensional channel. Using the sparse \gls{PARAFAC} model, we provide the minimum
+three dimensional channel. Using the sparse \gls{PARAFAC} model, we provides
+useful bounds on the minimum
 number of transmit beams,  receive beams, and length of the pilot sequence that
-guarantees the uniqueness of the model. This offers  flexibility to the system
+guarantee the uniqueness of the model. This offers  flexibility to the system
 as it can conveniently control the system overhead according to the number of \gls{RF} chains and spectral efficiency by choosing the number of beams and pilot
-sequence length. In future works, we intend to extend sparse \gls{PARAFAC} solution for time
-varying channels whose time response changes from frame-to-frame.
+sequence length. In future works, we intend to extend the proposed tensor-based
+compressive channel estimator to time varying channels whose time response changes from frame-to-frame.
 
 %\section*{Acknowledgment}
 \newpage
