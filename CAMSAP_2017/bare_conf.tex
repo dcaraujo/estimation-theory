@@ -83,7 +83,7 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{Channel Estimation of Frequency Selective Channels Using Sparse PARAFAC Model}
+\title{Tensor-Based Compressed Estimation of Frequency-Selective Channels in mmWave MIMO Systems}
 
 
 % author names and affiliations
@@ -139,15 +139,15 @@ Email: andre@gtel.ufc.br}}
 This paper develops a novel hybrid analog-digital frequency selective channel estimation technique
 assuming multiple antennas at the transmitter and multiple antennas at the
 receiver. We link the estimation problem to the \gls{PARAFAC} analysis by
-modeling the channel as a third order tensor. We leverage on this link to derive
-a solution that jointly estimates the spatio characteristics and
-the delay pattern of the channel. The proposed method relies on the joint
+modeling the effective frequency-selective MIMO as a third order tensor. We leverage on this link to derive
+a solution that jointly estimates the transmit-receive spatial characteristics and
+the delay pattern of the multidimensional channel. The proposed method relies on the joint
 sparsity of the spatial and delay domains, thereby affording the system to use
 short  pilot sequences and very few beams to accurate estimate channel. Moreover, we exploit the
-fundamental results of Kruskal for sparse \gls{PARAFAC} models that guarantees
-uniqueness to assign the minimum number of beams and pilot sequence length. The
-simulation results show that the proposed solution can achieve very accurate
-estimates if the system meets Kruskal conditions. 
+fundamental results of Kruskal's uniqueness for tensor compressive sensing
+\cite{Sidiropoulos:2012} to derive useful bounds on the minimum number of beams
+and pilot sequence length. The simulation results show that the proposed
+solution can achieve very accurate estimates if the system meets Kruskal conditions. 
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
