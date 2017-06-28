@@ -1,0 +1,86 @@
+\documentclass[10pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage[cmex10]{amsmath}
+\usepackage{amsfonts}
+ \pgfplotsset{compat=1.12}
+%\usepgfplotslibrary{polar}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+  \begin{axis}[%
+ymode = log,
+%scale only axis,
+%separate axis lines,
+%every outer x axis line/.append style={black},
+%every x tick label/.append style={font=\color{black}},
+every tick label/.append style={scale=0.8},
+xmin=0,
+xmax=20,
+xlabel={\footnotesize{SNR (dB)}},
+%xmajorgrids,
+%every outer y axis line/.append style={black},
+%every y tick label/.append style={font=\color{black}},
+ylabel={ \footnotesize{$\|\tau \hat{\tau}|^2_F$}},
+ymin = 0.00001,
+%title = Channel frequency response between $\mathbf{H}(2,1)$,
+%ymajorgrids,
+grid,
+%axis background/.style={fill=white},
+legend style={at={(0,0)},anchor=south west,legend cell align=left,align=left,draw=black,font=\fontsize{4}{4}\selectfont}
+]
+
+%%%%%%%%%%%%%%%%%%%%%%%%% M=8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\addplot [color=red!80,solid,mark=asterisk,mark options={solid},line width=1.5pt,mark size=2pt]
+  table[row sep=crcr]{%
+0 0.39022 \\
+4 0.038198 \\
+8 0.037981 \\
+12 0.004344 \\
+16 0.0030505 \\
+20 0.0011438 \\
+};
+\addlegendentry{$(Q=6,I=32,P=6)$}; 
+
+
+\addplot [color=black!60,solid,mark=square,mark options={solid},line width=1.5pt,mark size=2pt]
+   table[row sep=crcr]{%
+0 0.004057 \\
+4 0.006185 \\
+8 0.0036622 \\
+12 0.0042746 \\
+16 0.0056399 \\
+20 0.003626 \\
+ };
+\addlegendentry{$(Q=6,I=20,P=6)$};
+
+\addplot [color=blue!60,solid,mark=triangle,mark options={solid},line width=1.5pt,mark size=2pt]
+  table[row sep=crcr]{%
+0 0.0067377 \\
+4 0.0053286 \\
+8 0.0037105 \\
+12 0.0041009 \\
+16 0.0058454 \\
+20 0.0049444 \\
+};
+\addlegendentry{$(Q=6,I=6,P=6)$};
+
+% \addplot [color=green!80,solid,mark=diamond,mark options={solid},line width=1.5pt,mark size=2pt]
+%   table[row sep=crcr]{%
+
+% };
+% \addlegendentry{$(Q=6,I=2,P=6)$};
+
+\end{axis}
+\end{tikzpicture}
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
