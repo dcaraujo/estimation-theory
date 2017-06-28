@@ -83,7 +83,7 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{Tensor-Based Compressed Estimation of Frequency-Selective Channels in mmWave MIMO Systems}
+\title{Tensor-Based Compressed Estimation of Frequency-Selective mmWave MIMO Channels}
 
 
 % author names and affiliations
@@ -309,8 +309,8 @@ the system.
 \begin{figure}[t!]
   \centering
   \includegraphics[width=0.48\textwidth]{fig/frame}
-  \caption{Each frame carries the same pilot sequence and the same set of
-    receive beams while the transmitter changes the beam from frame-to-frame.}
+  \caption{Each frame carries the same pilot sequence. The receiver uses the same set of
+    beams while the transmitter changes the beam from frame-to-frame.}
   \label{fig:frame}
 \end{figure}
 
@@ -643,13 +643,21 @@ first corollary; therefore, the uniqueness of the \gls{PARAFAC} model does not h
   \label{fig:tx_beams}
 \end{figure}
 
+% \begin{figure}[!t]
+%   \centering
+%   \includegraphics[width=0.48\textwidth]{fig/snr_nmse_rx}
+%   \caption{The plots show the tensor-based algorithm performance when we vary the
+%     number of receive beams.  }
+%   \label{fig:rx_beams}
+% \end{figure}
+
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=0.48\textwidth]{fig/snr_nmse_rx}
-  \caption{The plots show the tensor-based algorithm performance when we vary the
-    number of receive beams.  }
+  \includegraphics[width=0.48\textwidth]{fig/snr_angleTx_error}
+  \caption{The plots show the estimation error of the \gls{AoD}}
   \label{fig:rx_beams}
 \end{figure}
+
 
 \section{Conclusion}
 In this paper, we investigated the problem of estimating frequency selective
