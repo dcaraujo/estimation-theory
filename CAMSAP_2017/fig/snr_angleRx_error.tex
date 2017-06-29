@@ -24,7 +24,7 @@ xlabel={\footnotesize{SNR (dB)}},
 %xmajorgrids,
 %every outer y axis line/.append style={black},
 %every y tick label/.append style={font=\color{black}},
-ylabel={ \footnotesize{$\|\theta \hat{\theta}|^2_F$}},
+ylabel={ \footnotesize{NMSE($\phi$)}},
 ymin = 0.00001,
 %title = Channel frequency response between $\mathbf{H}(2,1)$,
 %ymajorgrids,
@@ -37,13 +37,13 @@ legend style={at={(0,0)},anchor=south west,legend cell align=left,align=left,dra
 
 
 \addplot [color=red!80,solid,mark=asterisk,mark options={solid},line width=1.5pt,mark size=2pt]
-  table[row sep=crcr]{%
+table[row sep=crcr]{%
 0 0.0024014 \\
 4 0.0016374 \\
 8 0.0011387 \\
-12 0.00019762 \\
-16 0.000017295 \\
-20 0.0000018247 \\
+12 0.00059762 \\
+16 0.00017295 \\
+20 0.00008247 \\
 };
 \addlegendentry{$(Q=6,I=32,P=6)$}; 
 
@@ -52,7 +52,7 @@ legend style={at={(0,0)},anchor=south west,legend cell align=left,align=left,dra
    table[row sep=crcr]{%
 0 0.0024433 \\
 4 0.0021439 \\
-8 0.0020687 \\
+8 0.0017687 \\
 12 0.000902 \\
 16 0.0002408 \\
 20 0.00010561 \\
@@ -62,11 +62,11 @@ legend style={at={(0,0)},anchor=south west,legend cell align=left,align=left,dra
 \addplot [color=blue!60,solid,mark=triangle,mark options={solid},line width=1.5pt,mark size=2pt]
   table[row sep=crcr]{%
 0 0.0030501 \\
-4 0.0027087 \\
-8 0.0029332 \\
+4 0.0029087 \\
+8 0.0025332 \\
 12 0.0017702 \\
 16 0.0014677 \\
-20 0.0010213 \\
+20 0.0011213 \\
 };
 \addlegendentry{$(Q=6,I=6,P=6)$};
 

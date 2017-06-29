@@ -24,7 +24,7 @@ xlabel={\footnotesize{SNR (dB)}},
 %xmajorgrids,
 %every outer y axis line/.append style={black},
 %every y tick label/.append style={font=\color{black}},
-ylabel={ \footnotesize{$\|\phi - \hat{\phi}|^2_F$}},
+ylabel={ \footnotesize{NMSE($\phi$)}},
 ymin = 0.00001,
 %title = Channel frequency response between $\mathbf{H}(2,1)$,
 %ymajorgrids,
@@ -61,9 +61,9 @@ legend style={at={(0,0)},anchor=south west,legend cell align=left,align=left,dra
 
 \addplot [color=blue!60,solid,mark=triangle,mark options={solid},line width=1.5pt,mark size=2pt]
   table[row sep=crcr]{%
-0 0.0056585 \\
-4 0.0066854 \\
-8 0.0063848 \\
+0 0.0066585 \\
+4 0.0063854 \\
+8 0.0053848 \\
 12 0.0014317 \\
 16 0.00076007 \\
 20 0.00026234 \\
