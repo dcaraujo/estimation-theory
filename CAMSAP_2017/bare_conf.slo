@@ -1,0 +1,424 @@
+\glossaryentry{number antennas?\glossentry{nAntTx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number antennas?\glossentry{nAntRx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number RF chains?\glossentry{nRFTx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number RF chains?\glossentry{nRFRx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{txBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{txAnalogMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{txDigitalMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number antennas?\glossentry{nAntTx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{rxAnalogMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{rxDigitalMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number antennas?\glossentry{nAntRx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{nRxBeam}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number RF chains?\glossentry{nRFTx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{nRxBeam}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number RF chains?\glossentry{nRFRx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pLength}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{chMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{noise?\glossentry{noiseVec}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{timeIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{noise?\glossentry{noiseCov}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{receiver signal?\glossentry{rxVec}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{txBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{timeIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{chMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{txBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{txBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{timeIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{noise?\glossentry{noiseVec}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{txBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{timeIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{txBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSym}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{timeIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{timeIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSymVec}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSym}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSym}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSym}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pLength}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{nTime}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pLength}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pLength}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{rxBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{rxOutput}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{rxBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{txBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{timeIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{rxBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{chMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{txBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{txBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{timeIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{noise?\glossentry{noise}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{rxBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{txBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{timeIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{noise?\glossentry{noise}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{rxBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{txBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{timeIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{rxBeamVec}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{rxBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{noise?\glossentry{noiseVec}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{txBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{timeIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{rxOutput}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{rxBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{txBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{timeIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{chTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{rxBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{txBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{txBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSymMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{timeIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{chTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number antennas?\glossentry{nAntRx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number antennas?\glossentry{nAntTx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSymMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pLength}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSymMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSym}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSym}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSym}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSym}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pLength}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSym}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{nTime}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{txBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{rxBeamIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{nRxBeam}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{nTime}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{rxOutputTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{chTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{txBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSymMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{noise?\glossentry{noiseTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{chMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{chMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{cplxGain}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{pulse?\glossentry{pulse}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{pulse?\glossentry{timeSamp}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{delay}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{rxStrVec}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{elev}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{txStrVec}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{azm}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{pulse?\glossentry{pulse}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{delay}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{delay}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{cplxGain}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{delay}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{azm}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{elev}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{rxStrVec}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{elev}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number antennas?\glossentry{nAntRx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{txStrVec}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{azm}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number antennas?\glossentry{nAntTx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{chMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{identity matrix?\glossentry{eyeTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{rxStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number antennas?\glossentry{nAntRx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{txStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number antennas?\glossentry{nAntTx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{rxStrVec}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{elev}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{txStrVec}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{azm}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{tapIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{delayMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{cplxGain}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{pulse?\glossentry{pulse}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{timeIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{pulse?\glossentry{timeSamp}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{delay}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{cplxGain}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{pulse?\glossentry{pulse}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{index?\glossentry{timeIdx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{pulse?\glossentry{timeSamp}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{delay}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{chTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{identity matrix?\glossentry{eyeTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{rxStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{txStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{delayMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{errorTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{noise?\glossentry{noiseTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{rxOutputTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{identity matrix?\glossentry{eyeTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{rxStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{txBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{txStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSymMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{delayMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{errorTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{txBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSymMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{chTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{rxOutputTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{identity matrix?\glossentry{eyeTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{beamforming?\glossentry{txBeamMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{symbols?\glossentry{pSymMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{errorTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number antennas?\glossentry{nAntRx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number antennas?\glossentry{nAntRx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number antennas?\glossentry{nAntTx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number antennas?\glossentry{nAntTx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{nTimeSamples}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{nTimeSamples}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number antennas?\glossentry{nAntTx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number antennas?\glossentry{nAntRx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{nTimeSamples}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{rxStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{rxStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{rxStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{rxStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{rxStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{rxStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{chTen}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{rxStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{txStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{delayMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{rxStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{txStrMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{rays?\glossentry{delayMtx}|setentrycounter[]{page}\glsnumberformat}{2}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{index?\glossentry{nRxBeam}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{pLength}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{index?\glossentry{nRxBeam}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{pLength}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{index?\glossentry{nRxBeam}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{pLength}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{index?\glossentry{nRxBeam}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{pLength}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{pLength}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{index?\glossentry{nRxBeam}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputTen}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{index?\glossentry{nRxBeam}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{pLength}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{chTen}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{index?\glossentry{nRxBeam}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{pLength}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{sparsity}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{chTen}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{beamforming?\glossentry{txBeamMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{pSymMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputTen}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputTen}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spVec}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{identity matrix?\glossentry{eye}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spVec}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spVec}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spVec}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{chTen}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{chTen}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{identity matrix?\glossentry{eyeTen}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{orTh}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{spMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{beamforming?\glossentry{txBeamMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{pSymMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{chTen}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{beamforming?\glossentry{txBeamMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{beamforming?\glossentry{txBeamMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{beamforming?\glossentry{rxBeamMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{beamforming?\glossentry{txBeamMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{symbols?\glossentry{rxOutputMtx}|setentrycounter[]{page}\glsnumberformat}{3}
+\glossaryentry{channel?\glossentry{chTen}|setentrycounter[]{page}\glsnumberformat}{4}
+\glossaryentry{channel?\glossentry{chTen}|setentrycounter[]{page}\glsnumberformat}{4}
+\glossaryentry{channel?\glossentry{chTen}|setentrycounter[]{page}\glsnumberformat}{4}
+\glossaryentry{channel?\glossentry{chTen}|setentrycounter[]{page}\glsnumberformat}{4}
+\glossaryentry{symbols?\glossentry{rxOutputTen}|setentrycounter[]{page}\glsnumberformat}{4}
+\glossaryentry{number antennas?\glossentry{nAntTx}|setentrycounter[]{page}\glsnumberformat}{4}
+\glossaryentry{number antennas?\glossentry{nAntRx}|setentrycounter[]{page}\glsnumberformat}{4}
+\glossaryentry{index?\glossentry{nTime}|setentrycounter[]{page}\glsnumberformat}{4}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{4}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{4}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{4}
+\glossaryentry{number taps?\glossentry{nTaps}|setentrycounter[]{page}\glsnumberformat}{4}
+\glossaryentry{index?\glossentry{nTxBeam}|setentrycounter[]{page}\glsnumberformat}{4}
